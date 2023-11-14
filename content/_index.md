@@ -19,8 +19,9 @@ links = [
 
 {{ main_title(above="PogScience présente <strong>24 heures vulgarisation</strong>", title="La, le, les physique·s") }}
 
-**24 Heures Vulgarisation** est une série d’émissions éducatives de 2h diffusées en direct et tour à tour sur 12 chaînes
-Twitch différentes du 2 au 3 décembre 2023.
+Les 24H vulgarisation, c’est 12 lives Twitch de 2h depuis la France, la Suisse et le Québec, pour un flot ininterrompu
+de connaissances ! Bien que le thème soit “La, le, les physiques”, nous aborderons cette thématique sous de nombreux
+angles différents.
 
-Ce contenu culturel et scientifique prend des formes variées (discussion, interview, quizz, jeu vidéo) sur le thème de
-la/le/les physique(s).
+Alors, des labos du Centre National de Recherche Scientifique (CNRS) aux volcans du monde, de l’aviation à l’art, en
+passant par la science-fiction, la biologie l’histoire et bien d’autres, rejoins-nous !
