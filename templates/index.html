@@ -52,7 +52,8 @@
                             </a>
 
                             {% for link in section.extra.events.links %}
-                                <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}" class="button is-ghost is-large" target="_blank">{{ link.title }}</a>
+                                <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
+                                   class="button is-ghost is-large" target="_blank">{{ link.title }}</a>
                             {% endfor %}
                         </p>
                     </div>
@@ -60,6 +61,157 @@
             </div>
         </article>
     </section>
+
+    <section class="section container gs-events" id="programme">
+        <div class="columns is-desktop is-variable is-8">
+            <div class="column is-3 is-12-touch">
+                <div class="column-title-sticker">
+                    <h1><span>Demandez</span> le programme</h1>
+
+                    <aside class="current-timezone">
+                        <p>Heure de <span id="timezone">Paris</span></p>
+                    </aside>
+
+                    {# <?php if ($events->has_hidden_events): ?>
+                    <aside>
+                        <p>D'autres événements s'ajouteront…</p>
+                    </aside>
+                    <?php endif; ?> #}
+
+                    {% if section.extra.events.calendar %}
+                        <aside class="calendar">
+                            <details class="has-modal">
+                                <summary>Ajouter à votre calendrier</summary>
+
+                                <div class="modal is-active">
+                                    <div class="modal-background"></div>
+                                    <div class="modal-content">
+                                        <div class="box">
+                                            <article class="content">
+                                                <h3>Ajouter les streams à mon agenda</h3>
+                                                <p>
+                                                    Vous pouvez ajouter les streams de Générations Sorciers à votre
+                                                    agenda.
+                                                    Ils seront automatiquement mis à jour ! Ajoutez un agenda externe
+                                                    depuis
+                                                    une URL, et entrez l'adresse suivante :
+                                                </p>
+                                                <pre class="cal-url">{{ get_url(path=section.extra.events.calendar) }}</pre>
+                                                <p>
+                                                    Vous pouvez aussi <a
+                                                            href="{{ get_url(path=section.extra.events.calendar) }}">télécharger
+                                                        le calendrier
+                                                        directement</a>,
+                                                    mais il ne sera pas synchronisé en cas de changements.
+                                                </p>
+                                            </article>
+                                        </div>
+                                    </div>
+                                    <button class="modal-close is-large" aria-label="close"></button>
+                                </div>
+                            </details>
+                        </aside>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="column is-events-list">
+                {% set events_sec = get_section(path=section.extra.events.section) %}
+
+                <!--
+                {{ __tera_context }}
+                -->
+
+                {% for page in events_sec.pages %}
+                    {# If replay set, we link to that, else the explicit link (takes precedence over Twitch handle), else the Twitch link. #}
+                    {% set event_link = page.extra.replay | default(value=page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch)) %}
+                    {% set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) %}
+
+                    <article class="box {% if page.extra.highlighted %}is-final{% endif %}"
+                             data-datetime="{{ page.date | date(format="%+") }}"> {# is-past: past events #}
+                        <details>
+                            <summary>
+                                <time datetime="{{ page.date | date(format="%+") }}" class="has-auto-timezone">
+                                    {{ page.date | date(format="%Hh") }}
+                                </time>
+
+                                <div class="is-event-description">
+                                    <h3>
+                                        <a href="{{ event_link }}" class="live"
+                                           title="{{ page.authors[0] }} est actuellement en direct ! Cliquez pour accéder au live">LIVE</a>
+                                        <a href="{{ event_link }}">{{ page.title }}</a>
+                                    </h3>
+
+                                    {% if page.description %}
+                                        <p class="subtitle">{{ page.description }}</p>
+                                    {% endif %}
+
+                                    <p class="streamers">
+                                        {% if page.authors %}
+                                            <a href="{{ live_link }}">{{ page.authors | join(sep=", ") }}</a>
+                                        {% endif %}
+                                        {% if page.authors and page.extra.replay %}&nbsp;&middot;&nbsp;{% endif %}
+                                        {% if page.extra.replay %}
+                                            <a href="{{ page.extra.replay }}"
+                                               class="replay">{{ load_data(path="icons/film.svg", format="plain") | safe }}
+                                                &nbsp;Rediffusion</a>
+                                        {% endif %}
+                                    </p>
+                                </div>
+
+                                <aside>
+                                    <time datetime="{{ page.date | date(format="%+") }}"
+                                          class="is-mobile-time has-auto-timezone has-real-day-prepended"
+                                          aria-hidden="true">{{ page.date | date(format="%Hh") -}}
+                                    </time>
+
+                                    {% set avatar_handle = page.extra.icon | default(value=page.extra.twitch) %}
+                                    {% set avatar_path = "streamers/" ~ avatar_handle ~ ".png" %}
+                                    {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
+
+                                    <a href="{{ event_link }}"
+                                       class="{% if not avatar_meta %}button is-primary is-large{% endif %}"
+                                       title="Aller sur la chaîne sur Twitch de {{ avatar_handle }}">
+
+                                        {% if avatar_meta %} {# file exists #}
+                                            <span class="streamer-icon">
+                                                <img src="{{ get_url(path=avatar_path) }}" alt="{{ avatar_handle }}"/>
+                                            </span>
+                                        {% else %}
+                                            <span class="icon is-large">
+                                                {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
+                                            </span>
+                                        {% endif %}
+                                    </a>
+
+                                    <span class="icon is-caret">
+                                        {{ load_data(path="icons/caret.svg", format="plain") | safe }}
+                                    </span>
+                                </aside>
+                            </summary>
+
+                            <div class="content">
+                                {{ page.content | safe }}
+                                <p class="meta">
+                                    {% if page.extra.end %}De{% else %}À partir de{% endif %}
+                                    <time datetime="{{ page.date | date(format="%+") }}"
+                                          class="has-auto-timezone has-real-day-prepended">{{ page.date | date(format="%Hh") -}}
+                                    </time>
+                                    {%- if page.extra.end %}
+                                        à
+                                        <time datetime="{{ page.extra.end | date(format="%+") }}"
+                                              class="has-auto-timezone has-real-day-prepended">{{ page.extra.end | date(format="%Hh") -}}
+                                        </time>
+                                    {%- endif -%}.
+                                </p>
+                            </div>
+                        </details>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
 
 
     {# <?php

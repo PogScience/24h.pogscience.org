@@ -65,7 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const date = new Date(isoDate)
 
-        timeElement.setAttribute("title", `${capitalize(originalDateTimeFormat.format(date))} ${displayOffset(date._offset || -120)}`)
+        timeElement.setAttribute(
+            "title",
+            `${capitalize(originalDateTimeFormat.format(date))} ${displayOffset(date.getTimezoneOffset() || date._offset || -120)}`
+        )
 
         if (timeElement.classList.contains("is-date")) {
             timeElement.innerText = capitalize(dateFormat.format(date))
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (part.type === "day") origDay = part.value
             })
 
-            if (day !== origDay) {
+            if (day !== origDay || timeElement.classList.contains("auto-timezone-force-day")) {
                 const realDayElement = document.createElement("span")
                 realDayElement.classList.add("real-day")
                 realDayElement.innerText = shortDateFormat.format(date)
