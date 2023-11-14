@@ -12,7 +12,7 @@ begin = "2023-12-02"
 end = "2023-12-03"
 
 links = [
-    { title = "Discord", url = "https://discord.gg/rwqmYnaSK2" },
+    { title = "Discord", url = "https://discord.gg/QcDZxbYPpj" },
     { title = "Presse", path = "" }
 ]
 +++
