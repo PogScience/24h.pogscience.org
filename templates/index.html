@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block outer_content %}
+
+    <section class="hero">
+        <div class="hero-head"></div>
+        <article class="hero-body">
+            <div class="container">
+                <div class="columns gs-columns">
+                    <div class="column is-5 gs-logo-dates">
+
+                        {% set logo_meta = get_image_metadata(path=section.extra.events.logo.path) %}
+
+                        <picture class="gs-logo">
+                            {% if logo_meta.format == "svg" %}
+                                <span aria-label="{{ section.extra.events.logo.alt }}">
+                                    {{ load_data(path=section.extra.events.logo.path, format="plain") | safe }}
+                                </span>
+                            {% else %}
+                                <img sizes="(max-width: 1200px) 100vw, 1200px"
+                                     srcset="{{ resize_image(path=section.extra.events.logo.path, width=340) }} 340w,
+                                     {{ resize_image(path=section.extra.events.logo.path, width=942) }} 942w,
+                                     {{ resize_image(path=section.extra.events.logo.path, width=1200) }} 1200w"
+                                     src="{{ get_url(path=section.extra.events.logo.path) }}"
+                                     alt="{{ section.extra.events.logo.alt }}"
+                                     aria-hidden="true"/>
+                            {% endif %}
+                        </picture>
+
+                        {% if section.extra.events.begin and section.extra.events.end %}
+                            {% set locale = config.default_language | default(value="fr_FR") %}
+                            <aside class="gs-dates">
+                                <time datetime="2021-04-26">
+                                    <span>{{ section.extra.events.begin | date(format="%d", locale=locale) }}</span>
+                                    <span>{{ section.extra.events.begin | date(format="%b", locale=locale) }}</span>
+                                </time>
+                                <span>—</span>
+                                <time datetime="2021-05-03">
+                                    <span>{{ section.extra.events.end | date(format="%d") }}</span>
+                                    <span>{{ section.extra.events.end | date(format="%b", locale=locale) }}</span>
+                                </time>
+                            </aside>
+                        {% endif %}
+                    </div>
+
+                    <div class="column gs-pres">
+                        {{ section.content | safe }}
+
+                        <p class="buttons">
+                            <a href="#programme" class="button is-primary is-large">
+                                Consulter le programme
+                            </a>
+
+                            {% for link in section.extra.events.links %}
+                                <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}" class="button is-ghost is-large" target="_blank">{{ link.title }}</a>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+
+
+    {# <?php
+    include "sections/description.php";
+    include "sections/events.php";
+    include "sections/networks.php";
+    include "sections/legal.php";
+?> #}
+{% endblock %}

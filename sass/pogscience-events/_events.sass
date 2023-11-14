@@ -1,0 +1,233 @@
+.gs-events
+  .column-title-sticker
+    position: sticky
+    top: 1rem
+
+    margin: 0
+    padding: 0
+
+    text-align: right
+    color: $purple-lighter
+
+    +touch
+      position: static
+      text-align: center
+      margin-bottom: $sections-horizontal-padding
+
+    h1
+      font-size: 2.1rem
+      font-family: Poppins, sans-serif
+
+      span
+        display: block
+        font-size: 3.2rem
+
+      +desktop-only
+        font-size: 1.5rem
+        span
+          font-size: 2.1rem
+
+      +widescreen-only
+        font-size: 1.8rem
+        span
+          font-size: 2.6rem
+
+    .current-timezone
+      margin-top: 1rem
+      font-size: 1.1em
+    .calendar
+      margin-top: 2rem
+      .cal-url
+        border-radius: 4px
+        font-size: 1.1em
+        text-align: center
+        user-select: all
+
+  .is-events-list
+    margin-top: 1rem
+
+    h2
+      @extend .title
+      font-size: 1.8rem
+      font-family: Poppins, sans-serif
+      color: $purple-lighter
+
+      &:not(:first-child)
+        margin-top: 2.5rem
+
+    article
+      color: $darker
+
+      .content
+        h1, h2, h3, h4, h5, h6
+          color: $darker
+          font-weight: 500
+          font-family: Poppins, sans-serif
+
+      &.is-final
+        &, summary > .is-event-description h3 a, summary > .is-event-description p.subtitle
+          &, strong, em
+            background-color: $purple-darker
+            color: $purple-lighter
+        .content
+          h1, h2, h3, h4, h5, h6, strong, em
+            color: $purple-lighter
+          a
+            color: $purple-somewhat-light
+
+            &:hover
+              color: $purple-lighter
+
+      &.is-past
+        &,
+        summary time,
+        summary .is-event-description h3,
+        summary .is-event-description p.subtitle
+          background-color: $purple-somewhat-light
+          color: $dark
+        .content
+          border-top-color: $purple-somewhat-light
+
+      details
+        summary
+          display: flex
+          align-items: center
+
+          +mobile
+            display: block
+
+          ::marker, ::-webkit-details-marker
+            display: none
+
+          > *
+            display: block
+
+          > time
+            width: 7rem
+            margin-right: 1rem
+
+            font-size: 2.2rem
+            font-weight: 400
+
+            +mobile
+              display: none
+
+            .real-day
+              display: block
+              font-size: 1.16rem
+              margin-top: -0.8rem
+
+          > .is-event-description
+            flex: 4
+
+            h3
+              font-size: 1.8rem
+              font-weight: 500
+              font-family: Poppins, sans-serif
+
+              a
+                color: $darker
+
+                &:hover
+                  text-decoration: underline
+
+              +mobile
+                font-size: 1.6rem
+                line-height: 1.2
+                margin-bottom: .4rem
+
+              a.live
+                position: relative
+                top: -1px
+
+                vertical-align: middle
+
+                margin-right: .4rem
+                padding: .2rem .4rem
+                border-radius: 4px
+
+                background-color: $red
+                color: $white
+
+                font-family: Rubik, sans-serif
+                font-size: 1rem
+
+                +mobile
+                  font-size: .9rem
+
+            p.subtitle
+              font-size: 1.5rem
+              color: $darker
+              margin-bottom: .4rem
+
+              +mobile
+                font-size: 1.3rem
+
+            p.streamers
+              font-size: 1.2rem
+
+              .replay
+                color: $purple-dark
+
+                svg
+                  height: 24px
+                  vertical-align: text-bottom
+
+              +mobile
+                font-size: 1.05rem
+                line-height: 1.1
+
+          > aside
+            margin-left: 1rem
+
+            display: flex
+            align-items: center
+
+            +mobile
+              margin: 1rem 0 .4rem 0
+
+            .is-mobile-time
+              display: none
+
+              +mobile
+                display: block
+                flex: 4
+                font-size: 1.8rem
+                font-weight: 400
+
+            .button
+              +mobile
+                font-size: 1rem
+                .icon.is-large
+                  width: 1.4rem
+                  height: 1.4rem
+
+            .streamer-icon img
+              width: 60px
+              height: 60px
+              border-radius: 4px
+
+              +mobile
+                width: 40px
+                height: 40px
+
+            .icon.is-caret
+              margin-left: 1rem
+
+              line-height: 0
+              transition: transform .2s ease-in-out
+
+              cursor: pointer
+
+        &[open] summary aside .icon.is-caret
+          transform: rotate(180deg)
+
+        .content
+          margin-top: 1.2rem
+          border-top: solid 1px $grey
+          padding-top: 1rem
+
+          font-size: 1.3rem
+
+          +mobile
+            font-size: 1.1rem

@@ -1,0 +1,21 @@
+{% macro opengraph(title, description, logo_path="") %}
+    <meta name="title" content="{{ config.title }}" />
+    <meta name="description" content="{{ config.description }}" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://generations-sorciers.fr/">
+    <meta property="og:title" content="{{ config.title }}">
+    <meta property="og:description" content="{{ config.description }}" />
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://generations-sorciers.fr/">
+    <meta property="twitter:title" content="Générations Sorciers, un événement PogScience">
+    <meta property="twitter:description"
+          content="Générations Sorciers, c'est 8 jours où des émissions de vulgarisation sur l'héritage de C'est Pas Sorcier vont se succéder, avec l'équipe originale !">
+
+    {% if logo_path %}
+        {% set image = resize_image(path=logo_path, width=1200, height=630) %}
+        <meta property="og:image" content="{{ image.url }}">
+        <meta property="twitter:image" content="{{ image.url }}">
+    {% endif %}
+{% endmacro %}
