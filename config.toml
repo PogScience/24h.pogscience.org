@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://24h.pogscience.org"
+base_url = "https://24h-pogscience-org.pages.dev"
 
 title = "Événement PogScience"
 description = "Courte description de l'événement PogScience"
