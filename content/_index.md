@@ -1,5 +1,5 @@
 +++
-title = "Événement PogScience !"
+title = "24h Vulga – La, le, les physique·s"
 
 [extra]
 
@@ -17,12 +17,10 @@ links = [
 ]
 +++
 
-{{ main_title(above="PogScience présente <strong>24 heures vulgarisation</strong>", title="La, le, les physique·s") }}
+{{ main_title(above="PogScience présente <strong>24h Vulga</strong>", title="La, le, les physique·s") }}
 
-Les 24H vulgarisation, c’est **12 lives Twitch de 2h chacun** depuis la France, la Suisse et le Québec, pour un flot
-ininterrompu de connaissances !
+Les 24h Vulga, c’est **12 lives Twitch de 2h chacun** depuis la France, la Suisse et le Québec, pour un flot
+ininterrompu de connaissances **sous de nombreux angles différents** !
 
-Bien que le thème soit *La, le, les physiques*, nous aborderons cette thématique **sous de nombreux angles différents**.
-
-Alors, des labos du Centre National de Recherche Scientifique (CNRS) aux volcans du monde, de l’aviation à l’art, en
-passant par la science-fiction, la biologie l’histoire et bien d’autres, **rejoins-nous !**
+Des labos du Centre National de Recherche Scientifique (CNRS) aux volcans du monde, de l’aviation à l’art, en
+passant par la science-fiction, la biologie, l’histoire et bien d’autres, **rejoins-nous** ✨
