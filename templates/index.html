@@ -118,11 +118,7 @@
             <div class="column is-events-list">
                 {% set events_sec = get_section(path=section.extra.events.section) %}
 
-                <!--
-                {{ __tera_context }}
-                -->
-
-                {% for page in events_sec.pages %}
+                {% for page in events_sec.pages | reverse %}
                     {# If replay set, we link to that, else the explicit link (takes precedence over Twitch handle), else the Twitch link. #}
                     {% set event_link = page.extra.replay | default(value=page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch)) %}
                     {% set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) %}

@@ -1,13 +1,6 @@
-function capitalize(s) {
-    return s[0].toUpperCase() + s.slice(1);
-}
+import {capitalize, displayOffset} from "./utils/text.js"
 
-function displayOffset(offset) {
-    offset = -offset / 60
-    return "UTC" + (offset > 0 ? "+" : "-") + Math.abs(offset)
-}
-
-document.addEventListener("DOMContentLoaded", () => {
+;(() => {
     /* *** Modals on <detail> *** */
 
     document.querySelectorAll("details.has-modal").forEach(modal => {
@@ -114,4 +107,4 @@ document.addEventListener("DOMContentLoaded", () => {
         timezoneDisplay.innerText = timezoneParts.length === 2 ? timezoneParts[1] : localTimezone
         timezoneDisplay.setAttribute("title", `Les horaires ont été convertis dans votre zone horaire détectée (${displayOffset(new Date().getTimezoneOffset())}). La date origiane est affichée dans une infobulle.`)
     }
-})
+})()
