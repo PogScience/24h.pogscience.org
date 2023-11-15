@@ -6,9 +6,7 @@ authors = ["PogScience"]
 date = 2023-12-02T11:30:00+01:00
 
 [extra]
-with = """
-  Avec plein de streameurs·euses de l’événement
-"""
+with = "Avec plein de streameurs·euses de l’événement"
 
 twitch = "pogscience"
 # link = ""

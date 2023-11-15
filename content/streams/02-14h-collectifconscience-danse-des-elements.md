@@ -1,7 +1,7 @@
 +++
 title = "La danse des éléments"
 description = "En direct de l’Institut Pprime (Poitiers) du CNRS"
-authors = ["Robin T. et le Collectif Conscience"]
+authors = ["Le Collectif Conscience", "Robin (ToutSeComprend)"]
 
 date = 2023-12-02T14:00:00+01:00
 
