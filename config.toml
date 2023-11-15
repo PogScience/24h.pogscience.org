@@ -1,8 +1,9 @@
 # The URL the site will be built for
-base_url = "https://24h-pogscience-org.pages.dev"
+base_url = "https://24h.pogscience.org"
 
-title = "Événement PogScience"
-description = "Courte description de l'événement PogScience"
+title = "24h Vulga – La, le, les physique·s"
+description = """Rejoins-nous pour 12h de lives ininterrompus ! Des labos du CNRS aux volcans du monde, de l’aviation à
+l’art, en passant par la science-fiction, la biologie, l’histoire… et bien d’autres ✨"""
 
 default_language = "fr_FR"
 
