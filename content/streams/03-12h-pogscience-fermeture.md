@@ -1,5 +1,5 @@
 +++
-title = "Clôture des 24H Vulgarisation !"
+title = "Clôture des 24h Vulga !"
 # description = "Table ronde"
 authors = ["PogScience", "Robin (ToutSeComprend)"]
 
@@ -17,4 +17,4 @@ end = 2023-12-03T12:30:00+01:00
 +++
 
 Stream bonus court de _just chatting_. Discussion de fin avec tous les streamers·euses qui le souhaitent, pour
-clôturer en live !
+clôturer en live !

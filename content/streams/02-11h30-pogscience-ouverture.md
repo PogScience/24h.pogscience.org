@@ -1,5 +1,5 @@
 +++
-title = "Ouverture des 24H Vulgarisation !"
+title = "Ouverture des 24h Vulga !"
 # description = "Table ronde"
 authors = ["PogScience"]
 
@@ -16,5 +16,5 @@ end = 2023-12-02T12:00:00+01:00
 # replay = ""
 +++
 
-On ouvre le bal en _just chatting_ ! Un petit stream bonus, tranquille, pour se lancer sur les longues 24 heures
-ininterrompues.
+On ouvre le bal en _just chatting_ ! Un petit stream bonus, tranquille, pour se lancer sur les longues mais
+passionnantes 24 heures ininterrompues.

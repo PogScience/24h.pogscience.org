@@ -1,5 +1,5 @@
 +++
-title = "A la croisée des mondes : la physique au service de la science fiction"
+title = "A la croisée des mondes : la physique au service de la science fiction"
 # description = "Interview"
 authors = ["Hécate"]
 

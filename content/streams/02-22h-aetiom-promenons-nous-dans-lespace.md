@@ -16,6 +16,6 @@ end = 2023-12-03T00:00:00+01:00
 # replay = ""
 +++
 
-Peut-on se déplacer dans l'espace comme dans Star Wars, Stargate ou Star Trek ?
+Peut-on se déplacer dans l'espace comme dans Star Wars, Stargate ou Star Trek ?
 
 Introduction aux vols spatiaux avec le jeu/simulateur [_Kerbal Space Program_](https://www.kerbalspaceprogram.com/).

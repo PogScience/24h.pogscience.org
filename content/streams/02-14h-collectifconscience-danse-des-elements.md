@@ -17,4 +17,4 @@ end = 2023-12-02T16:00:00+01:00
 +++
 
 Live en direct du CNRS (avec une performance) à [l'Institut Pprime](https://www.pprime.fr) (Poitiers), et peut-être
-en public !
+en public !

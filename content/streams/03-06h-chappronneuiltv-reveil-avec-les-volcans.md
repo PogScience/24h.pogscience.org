@@ -17,4 +17,4 @@ end = 2023-12-03T08:00:00+01:00
 +++
 
 Avec un tour des éruptions actuelles dans le monde, on parlera de la structure des volcans, de la physique des
-explosions, des méthodes de surveillance et des risques volcaniques pour les populations !
+explosions, des méthodes de surveillance et des risques volcaniques pour les populations !

@@ -1,5 +1,5 @@
 +++
-title = "Adaptation dans les abysses : drôles de physiques !"
+title = "Adaptation dans les abysses : drôles de physiques !"
 # description = "Initiation à la beauté dans le temps • Quizz !"
 authors = ["DrGwel"]
 

@@ -1,6 +1,6 @@
 +++
-title = "Comment l'homme s'est-il lancé sur les océans ?"
-# description = "Initiation à la beauté dans le temps • Quizz !"
+title = "Comment l'homme s'est-il lancé sur les océans ?"
+# description = ""
 authors = ["Le Flot de l’Histoire"]
 
 date = 2023-12-02T18:00:00+01:00
