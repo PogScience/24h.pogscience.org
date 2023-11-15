@@ -3,7 +3,7 @@ title = "Les toasts ont des vertues insoupçonnées !"
 description = "Table ronde"
 authors = ["Julien Dassa-Terrier"]
 
-date = 2023-12-02T20:00:00+01:00
+date = 2023-11-15T02:30:00+01:00
 
 [extra]
 with = """
@@ -15,9 +15,9 @@ with = """
 twitch = "dassaju"
 # link = ""
 
-end = 2023-12-03T22:30:00+01:00
+end = 2023-11-15T02:31:00+01:00
 
-replay = ""
+# replay = ""
 +++
 
 Une table ronde entourée d'éminents invités qui vise à aborder le rôle positif de la vulgarisation, mais il y a un

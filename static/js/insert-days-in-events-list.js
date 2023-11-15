@@ -12,6 +12,8 @@ import {capitalize} from "./utils/text.js";
         month: "long",
     })
 
+    const headingTemplate = document.getElementById("events-day-heading")
+
     document.querySelectorAll(".is-events-list").forEach(eventsListElement => {
         let currentDate = undefined
 
@@ -23,16 +25,13 @@ import {capitalize} from "./utils/text.js";
                         <time datetime="{{ iso date }}" class="has-auto-timezone is-date">{{ displayable date }}</time>
                     </h2>
                 */
+                const heading = headingTemplate.content.cloneNode(true)
 
-                const time = document.createElement("time")
+                const time = heading.querySelector("time")
                 time.setAttribute("datetime", date.toISOString())
-                time.classList.add("has-auto-timezone", "is-date")
                 time.innerText = capitalize(dateFormat.format(date))
 
-                const h2 = document.createElement("h2")
-                h2.appendChild(time)
-
-                eventsListElement.insertBefore(h2, eventElement)
+                eventsListElement.insertBefore(heading, eventElement)
             }
 
             currentDate = date

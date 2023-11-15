@@ -72,12 +72,6 @@
                         <p>Heure de <span id="timezone">Paris</span></p>
                     </aside>
 
-                    {# <?php if ($events->has_hidden_events): ?>
-                    <aside>
-                        <p>D'autres événements s'ajouteront…</p>
-                    </aside>
-                    <?php endif; ?> #}
-
                     {% if section.extra.events.calendar %}
                         <aside class="calendar">
                             <details class="has-modal">
@@ -124,7 +118,13 @@
                     {% set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) %}
 
                     <article class="box {% if page.extra.highlighted %}is-final{% endif %}"
-                             data-datetime="{{ page.date | date(format="%+") }}"> {# is-past: past events #}
+                             data-datetime="{{ page.date | date(format="%+") }}"
+                             {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}> {# is-past: past events #}
+
+                        <template class="event-live-template">
+                            <a href="{{ event_link }}" class="is-live" title="{{ page.authors[0] }} est actuellement en direct ! Cliquez pour accéder au live">LIVE</a>
+                        </template>
+
                         <details>
                             <summary>
                                 <time datetime="{{ page.date | date(format="%+") }}" class="has-auto-timezone">
@@ -132,9 +132,7 @@
                                 </time>
 
                                 <div class="is-event-description">
-                                    <h3>
-                                        <a href="{{ event_link }}" class="live"
-                                           title="{{ page.authors[0] }} est actuellement en direct ! Cliquez pour accéder au live">LIVE</a>
+                                    <h3 class="is-event-title">
                                         <a href="{{ event_link }}">{{ page.title }}</a>
                                     </h3>
 
@@ -194,10 +192,10 @@
                                           class="has-auto-timezone has-real-day-prepended">{{ page.date | date(format="%Hh") -}}
                                     </time>
                                     {%- if page.extra.end %}
-                                        à
-                                        <time datetime="{{ page.extra.end | date(format="%+") }}"
-                                              class="has-auto-timezone has-real-day-prepended">{{ page.extra.end | date(format="%Hh") -}}
-                                        </time>
+                                    à
+                                    <time datetime="{{ page.extra.end | date(format="%+") }}"
+                                          class="has-auto-timezone has-real-day-prepended">{{ page.extra.end | date(format="%Hh") -}}
+                                    </time>
                                     {%- endif -%}.
                                 </p>
                             </div>
@@ -208,12 +206,11 @@
         </div>
     </section>
 
+    <template id="events-day-heading">
+        <h2>
+            <time datetime="" class="has-auto-timezone is-date"></time>
+        </h2>
+    </template>
 
 
-    {# <?php
-    include "sections/description.php";
-    include "sections/events.php";
-    include "sections/networks.php";
-    include "sections/legal.php";
-?> #}
 {% endblock %}
