@@ -168,8 +168,9 @@
                                        title="Aller sur la chaîne sur Twitch de {{ avatar_handle }}">
 
                                         {% if avatar_meta %} {# file exists #}
+                                            {% set avatar = resize_image(path=avatar_path, width=70, height=70) %}
                                             <span class="streamer-icon">
-                                                <img src="{{ get_url(path=avatar_path) }}" alt="{{ avatar_handle }}"/>
+                                                <img src="{{ avatar.url }}" alt="{{ avatar_handle }}"/>
                                             </span>
                                         {% else %}
                                             <span class="icon is-large">
