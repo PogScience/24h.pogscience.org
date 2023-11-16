@@ -1,7 +1,5 @@
 ;(() => {
     function updateLiveEvents() {
-        console.log("Updating live…")
-
         document.querySelectorAll(".is-events-list").forEach(eventsListElement => {
             eventsListElement.querySelectorAll("article[data-datetime][data-datetime-end]").forEach(eventElement => {
                 const begin = new Date(eventElement.dataset.datetime)
