@@ -21,10 +21,12 @@ UID:{{ get_hash(literal=event_digest, sha_type=384) }}.24h.pogscience.org
 DTSTAMP:{{ ical::datetime_utc(date=page.date) }}
 SUMMARY:{{ page.title }}
 DESCRIPTION:Par {{ page.authors | join(sep=", ") }}\n\n{{ page.content | striptags | trim | replace(from="
-", to="\n") | replace(from=",", to="\,") | replace(from=";", to="\;") | replace(from="\\", to="\\\\")}}
+
+", to="\n\n") | replace(from="
+", to=" ") | replace(from=",", to="\,") | replace(from=";", to="\;") | replace(from="\\", to="\\\\")}}
 LOCATION:{{ event_link }}
-DTSTART;TZID={{ ical::datetime_tz(date=page.date) }}:{{ ical::datetime(date=page.date) }}
-DTEND;TZID={{ ical::datetime_tz(date=page.extra.end) }}:{{ ical::datetime_utc(date=page.extra.end) }}
+DTSTART;TZID=Europe/Paris:{{ ical::datetime(date=page.date) }}
+DTEND;TZID=Europe/Paris:{{ ical::datetime(date=page.extra.end) }}
 END:VEVENT
 {%- endfor %}
 END:VCALENDAR
