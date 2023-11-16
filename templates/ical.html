@@ -1,7 +1,7 @@
 {%- import "macros/ical.html" as ical -%}
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Sabre//Sabre VObject 4.3.5//EN
+PRODID:-//PogScience//EVENTS Version 1.0-Zola//FR
 CALSCALE:GREGORIAN
 NAME:{{ ical::text(text=config.title) }}
 DESCRIPTION:{{ ical::text(text=config.description) }}
@@ -17,7 +17,7 @@ X-WR-TIMEZONE:Europe/Paris
 {%- set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) -%}
 {%- set event_digest = live_link ~ page.date ~ page.extra.end ~ page.authors[0] %}
 BEGIN:VEVENT
-UID:{{ get_hash(literal=event_digest, sha_type=384) }}.24h.pogscience.org
+UID:{{ get_hash(literal=event_digest, sha_type=384, base64=true) | safe }}.24h.pogscience.org
 DTSTAMP:{{ ical::datetime_utc(date=page.date) }}
 SUMMARY:{{ ical::text(text=page.title) }}
 DESCRIPTION:Par {{ ical::text(text=page.authors | join(sep=", ")) }}\n\n{{ ical::text(text=page.content) }}
@@ -27,4 +27,4 @@ DTEND;TZID=Europe/Paris:{{ ical::datetime(date=page.extra.end) }}
 END:VEVENT
 {%- endfor %}
 END:VCALENDAR
-COMMENT:(guard against live reload)
+COMMENT:*{# guard against live reload script injected by Zola in development #}
