@@ -26,5 +26,6 @@ LOCATION:{{ event_link }}
 DTSTART;TZID={{ ical::datetime_tz(date=page.date) }}:{{ ical::datetime(date=page.date) }}
 DTEND;TZID={{ ical::datetime_tz(date=page.extra.end) }}:{{ ical::datetime_utc(date=page.extra.end) }}
 END:VEVENT
+{%- endfor %}
+END:VCALENDAR
 COMMENT:(guard against live reload)
-{%- endfor -%}
