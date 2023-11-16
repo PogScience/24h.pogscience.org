@@ -5,7 +5,7 @@ title = "24h Vulga – La, le, les physique·s"
 
 [extra.events]
 section = "streams/_index.md"
-# calendar = "@/_streams.ics.md"
+calendar = "@/_streams.ics.md"
 
 logo = { path = "24h/24h-vulga.svg", alt = "24 heures vulga" }
 begin = "2023-12-02"

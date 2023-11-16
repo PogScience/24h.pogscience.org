@@ -1,0 +1,30 @@
+{%- import "macros/ical.html" as ical -%}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Sabre//Sabre VObject 4.3.5//EN
+CALSCALE:GREGORIAN
+NAME:{{ config.title }}
+DESCRIPTION:{{ config.description }}
+URL;VALUE=URI:{{ config.base_url }}
+TIMEZONE-ID:Europe/Paris
+X-WR-CALNAME:{{ config.title }}
+X-WR-CALDESC:{{ config.description }}
+X-WR-TIMEZONE:Europe/Paris
+{%- set events_sec = get_section(path=page.extra.section) -%}
+{%- for page in events_sec.pages | reverse -%}
+{#- If replay set, we link to that, else the explicit link (takes precedence over Twitch handle), else the Twitch link. -#}
+{%- set event_link = page.extra.replay | default(value=page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch)) -%}
+{%- set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) -%}
+{%- set event_digest = live_link ~ page.date ~ page.extra.end ~ page.authors[0] %}
+BEGIN:VEVENT
+UID:{{ get_hash(literal=event_digest, sha_type=384) }}.24h.pogscience.org
+DTSTAMP:{{ ical::datetime_utc(date=page.date) }}
+SUMMARY:{{ page.title }}
+DESCRIPTION:Par {{ page.authors | join(sep=", ") }}\n\n{{ page.content | striptags | trim | replace(from="
+", to="\n") | replace(from=",", to="\,") | replace(from=";", to="\;") | replace(from="\\", to="\\\\")}}
+LOCATION:{{ event_link }}
+DTSTART;TZID={{ ical::datetime_tz(date=page.date) }}:{{ ical::datetime(date=page.date) }}
+DTEND;TZID={{ ical::datetime_tz(date=page.extra.end) }}:{{ ical::datetime_utc(date=page.extra.end) }}
+END:VEVENT
+COMMENT:(guard against live reload)
+{%- endfor -%}

@@ -1,0 +1,11 @@
+{%- macro datetime(date) -%}
+{{- date | date(format="%Y%m%dT%H%M%S") -}}
+{%- endmacro -%}
+
+{%- macro datetime_utc(date) -%}
+{{- self::datetime(date=date) -}}Z
+{%- endmacro -%}
+
+{%- macro datetime_tz(date) -%}
+{{- date | date(format="%Z") -}}
+{%- endmacro -%}

@@ -1,7 +1,7 @@
 +++
 #path = "/streams.ics"
-template = "page.html"
+template = "ical.html"
 
 [extra]
-section = "streams"
+section = "streams/_index.md"
 +++
