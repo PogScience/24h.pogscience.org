@@ -3,12 +3,12 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Sabre//Sabre VObject 4.3.5//EN
 CALSCALE:GREGORIAN
-NAME:{{ config.title }}
-DESCRIPTION:{{ config.description }}
-URL;VALUE=URI:{{ config.base_url }}
+NAME:{{ ical::text(text=config.title) }}
+DESCRIPTION:{{ ical::text(text=config.description) }}
+URL;VALUE=URI:{{ ical::text(text=config.base_url) }}
 TIMEZONE-ID:Europe/Paris
-X-WR-CALNAME:{{ config.title }}
-X-WR-CALDESC:{{ config.description }}
+X-WR-CALNAME:{{ ical::text(text=config.title) }}
+X-WR-CALDESC:{{ ical::text(text=config.description) }}
 X-WR-TIMEZONE:Europe/Paris
 {%- set events_sec = get_section(path=page.extra.section) -%}
 {%- for page in events_sec.pages | reverse -%}
@@ -19,12 +19,9 @@ X-WR-TIMEZONE:Europe/Paris
 BEGIN:VEVENT
 UID:{{ get_hash(literal=event_digest, sha_type=384) }}.24h.pogscience.org
 DTSTAMP:{{ ical::datetime_utc(date=page.date) }}
-SUMMARY:{{ page.title }}
-DESCRIPTION:Par {{ page.authors | join(sep=", ") }}\n\n{{ page.content | striptags | trim | replace(from="
-
-", to="\n\n") | replace(from="
-", to=" ") | replace(from=",", to="\,") | replace(from=";", to="\;") | replace(from="\\", to="\\\\")}}
-LOCATION:{{ event_link }}
+SUMMARY:{{ ical::text(text=page.title) }}
+DESCRIPTION:Par {{ ical::text(text=page.authors | join(sep=", ")) }}\n\n{{ ical::text(text=page.content) }}
+LOCATION:{{ ical::text(text=event_link) }}
 DTSTART;TZID=Europe/Paris:{{ ical::datetime(date=page.date) }}
 DTEND;TZID=Europe/Paris:{{ ical::datetime(date=page.extra.end) }}
 END:VEVENT

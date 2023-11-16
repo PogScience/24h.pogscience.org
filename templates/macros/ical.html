@@ -9,3 +9,10 @@
 {%- macro datetime_tz(date) -%}
 {{- date | date(format="%Z") -}}
 {%- endmacro -%}
+
+{%- macro text(text) -%}
+{{ text | striptags | trim | replace(from="
+
+", to="\n\n") | replace(from="
+", to=" ") | replace(from=",", to="\,") | replace(from=";", to="\;") | replace(from="\\", to="\\\\") | safe }}
+{%- endmacro -%}
