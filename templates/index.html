@@ -2,12 +2,12 @@
 
 {% block outer_content %}
 
-    <section class="hero">
+    <section class="hero has-live-event-overlay">
         <div class="hero-head"></div>
         <article class="hero-body">
             <div class="container">
                 <div class="columns gs-columns">
-                    <div class="column is-5 gs-logo-dates">
+                    <div class="column is-4 gs-logo-dates">
 
                         {% set logo_meta = get_image_metadata(path=section.extra.events.logo.path) %}
 
@@ -29,16 +29,34 @@
 
                         {% if section.extra.events.begin and section.extra.events.end %}
                             {% set locale = config.default_language | default(value="fr_FR") %}
-                            <aside class="gs-dates">
-                                <time datetime="2021-04-26">
-                                    <span>{{ section.extra.events.begin | date(format="%d", locale=locale) }}</span>
-                                    <span>{{ section.extra.events.begin | date(format="%b", locale=locale) }}</span>
+
+                            {% set month_begin = section.extra.events.begin | date(format="%m") %}
+                            {% set month_end = section.extra.events.end | date(format="%m") %}
+                            {% set spans_over_multiple_months = month_begin != month_end %}
+                            {% if spans_over_multiple_months %}
+                                {% set month_format = "%b" %}
+                            {% else %}
+                                {% set month_format = "%B" %}
+                            {% endif %}
+                            <aside class="gs-dates {% if not spans_over_multiple_months %}has-one-month{% endif %}">
+                                <time datetime="{{ section.extra.events.begin | date(format="%+") }}"
+                                      class="is-day-begin">
+                                    {{ section.extra.events.begin | date(format="%d", locale=locale) }}
                                 </time>
-                                <span>—</span>
-                                <time datetime="2021-05-03">
-                                    <span>{{ section.extra.events.end | date(format="%d") }}</span>
-                                    <span>{{ section.extra.events.end | date(format="%b", locale=locale) }}</span>
+                                <span class="is-days-separator">–</span>
+                                <time datetime="{{ section.extra.events.end | date(format="%+") }}" class="is-day-end">
+                                    {{ section.extra.events.end | date(format="%d", locale=locale) }}
                                 </time>
+                                <time datetime="{{ section.extra.events.begin | date(format="%+") }}"
+                                      class="is-month-begin {% if not spans_over_multiple_months %}is-only-month{% endif %}">
+                                    {{ section.extra.events.begin | date(format=month_format, locale=locale) }}
+                                </time>
+                                {% if spans_over_multiple_months %}
+                                    <time datetime="{{ section.extra.events.end | date(format="%+") }}"
+                                          class="is-month-end">
+                                        {{ section.extra.events.end | date(format=month_format, locale=locale) }}
+                                    </time>
+                                {% endif %}
                             </aside>
                         {% endif %}
                     </div>
@@ -60,6 +78,24 @@
                 </div>
             </div>
         </article>
+    </section>
+
+    <section class="live-event">
+        <div class="live-event-container">
+            <figure>
+                {% set img = resize_image(path="streamers/pogscience.png", width=300, height=300) %}
+                <img src="{{ img.url }}" alt="PogScience"/>
+            </figure>
+            <article>
+                <p><strong>Suivez la chaîne PogScience</strong> pour être prévenu·e au début des 24h Vulga !</p>
+            </article>
+            <aside>
+                <a href="https://twitch.tv/pogscience" class="twitch-button" target="_blank">
+                    {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
+                    Suivre
+                </a>
+            </aside>
+        </div>
     </section>
 
     <section class="section container gs-events" id="programme">
@@ -93,7 +129,8 @@
                                                 <pre class="cal-url">{{ get_url(path=section.extra.events.calendar) }}</pre>
                                                 <p>
                                                     Vous pouvez aussi <a
-                                                            href="{{ get_url(path=section.extra.events.calendar) }}" download="events-pogscience.ics">télécharger
+                                                            href="{{ get_url(path=section.extra.events.calendar) }}"
+                                                            download="events-pogscience.ics">télécharger
                                                         le calendrier
                                                         directement</a>,
                                                     mais il ne sera pas synchronisé en cas de changements.
@@ -122,7 +159,8 @@
                              {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}> {# is-past: past events #}
 
                         <template class="event-live-template">
-                            <a href="{{ event_link }}" class="is-live" title="{{ page.authors[0] }} est actuellement en direct ! Cliquez pour accéder au live">LIVE</a>
+                            <a href="{{ event_link }}" class="is-live"
+                               title="{{ page.authors[0] }} est actuellement en direct ! Cliquez pour accéder au live">LIVE</a>
                         </template>
 
                         <details>
@@ -166,13 +204,13 @@
                                     {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
 
                                     {% if not avatar_meta %}
-                                    {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpg" %}
-                                    {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
+                                        {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpg" %}
+                                        {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
                                     {% endif %}
 
                                     {% if not avatar_meta %}
-                                    {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpeg" %}
-                                    {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
+                                        {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpeg" %}
+                                        {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
                                     {% endif %}
 
                                     <a href="{{ event_link }}"
