@@ -1,0 +1,6 @@
+# Cloudflare Pages Headers Configuration
+
+# Adds Content-Type header to iCal export, as Zola
+# is only capable of exporting HTML files as of now.
+/streams-ics*
+  Content-Type: text/calendar; charset=utf-8
