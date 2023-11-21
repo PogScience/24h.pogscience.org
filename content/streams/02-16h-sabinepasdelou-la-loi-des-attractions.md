@@ -3,7 +3,7 @@ title = "La loi des attractions : évolution de la beauté dans l'art"
 description = "Initiation à la beauté dans le temps • Quizz !"
 authors = ["Sabine Pasdelou"]
 
-date = 2023-12-02T16:00:00+01:00
+date = 2023-12-03T08:00:00+01:00
 
 [extra]
 with = ""
@@ -11,7 +11,7 @@ with = ""
 twitch = "sabinepasdelou"
 # link = ""
 
-end = 2023-12-02T18:00:00+01:00
+end = 2023-12-03T10:00:00+01:00
 
 # replay = ""
 +++
