@@ -1,5 +1,5 @@
 +++
-title = "Trous noirs, fluides artistiques en laboratoire"
+title = "Trous noirs fluides & instabilités artistiques en laboratoire"
 description = "En direct de l’institut Pprime du CNRS (Poitiers)"
 authors = ["Robin (Le Gonfleur d’Hélice)", "Le Collectif Conscience"]
 
