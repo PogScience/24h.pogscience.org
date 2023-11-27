@@ -1,5 +1,5 @@
 +++
-title = "A la croisée des mondes possibles : relations entre la physique et la fiction dans l'oeuvre de Raphaël Granier de Cassagnac"
+title = "A la croisée des mondes possibles : relations entre la physique et la fiction dans l'œuvre de Raphaël Granier de Cassagnac"
 # description = "Interview"
 authors = ["Hécate"]
 
