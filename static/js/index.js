@@ -1,4 +1,5 @@
+import "./modals.js"
 import "./auto-timezone.js"
 import "./insert-days-in-events-list.js"
+import "./open-details-if-targeted.js"
 import "./live-updates.js"
-import "./modals.js"

@@ -154,9 +154,11 @@
                     {% set event_link = page.extra.replay | default(value=page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch)) %}
                     {% set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) %}
 
-                    <article class="box {% if page.extra.highlighted %}is-final{% endif %}"
+                    <article class="box {% if page.extra.highlighted %}is-final{% endif %}" {# is-past: past events #}
                              data-datetime="{{ page.date | date(format="%+") }}"
-                             {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}> {# is-past: past events #}
+                             {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}
+                             id="{{ page.slug }}"
+                             >
 
                         <template class="event-live-template">
                             <a href="{{ event_link }}" class="is-live"
@@ -237,7 +239,7 @@
 
                             <div class="content">
                                 {{ page.content | safe }}
-                                <p class="meta">
+                                <footer class="meta">
                                     {% if page.extra.end %}De{% else %}À partir de{% endif %}
                                     <time datetime="{{ page.date | date(format="%+") }}"
                                           class="has-auto-timezone has-real-day-prepended">{{ page.date | date(format="%Hh") -}}
@@ -247,8 +249,9 @@
                                     <time datetime="{{ page.extra.end | date(format="%+") }}"
                                           class="has-auto-timezone has-real-day-prepended">{{ page.extra.end | date(format="%Hh") -}}
                                     </time>
-                                    {%- endif -%}.
-                                </p>
+                                    {%- endif -%}&nbsp;—
+                                    <a href="#{{ page.slug }}">Lien permanent</a>
+                                </footer>
                             </div>
                         </details>
                     </article>
