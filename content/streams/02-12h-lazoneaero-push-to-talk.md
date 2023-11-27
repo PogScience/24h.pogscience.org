@@ -17,4 +17,4 @@ end = 2023-12-02T14:00:00+01:00
 +++
 
 Format _libre antenne_ avec chroniqueurs, une partie sur la physique liée au vol, la portance d'un avion, les
-performances, et l'autre sur Le physique du pilote, le facteur humain en aviation et ailleurs, etc.
+performances, et l'autre sur le physique du pilote, le facteur humain en aviation et ailleurs, etc.
