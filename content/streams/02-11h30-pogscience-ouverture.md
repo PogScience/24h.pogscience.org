@@ -1,7 +1,7 @@
 +++
 title = "Ouverture des 24h Vulga !"
 # description = "Table ronde"
-authors = ["PogScience"]
+authors = ["Sabine Pasdelou", "PogScience"]
 
 date = 2023-12-02T11:30:00+01:00
 
