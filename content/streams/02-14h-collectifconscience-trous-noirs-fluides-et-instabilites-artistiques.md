@@ -17,7 +17,7 @@ end = 2023-12-02T16:00:00+01:00
 +++
 
 [L’Institut Pprime de Poitiers (CNRS)](https://pprime.fr/) nous accueille pour explorer la topologie de l'espace-temps
-en créant des trous noirs en laboratoire, avant de se pencher sur les instabilités en mécanique des fluides et à leurs
+en créant des trous noirs en laboratoire, avant de se pencher sur les instabilités en mécanique des fluides et sur leurs
 formes artistiques.
 
 Avec :
