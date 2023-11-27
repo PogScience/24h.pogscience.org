@@ -171,7 +171,7 @@
                                     {{ page.date | date(format="%Hh") }}
                                 </time>
 
-                                <div class="is-event-description">
+                                <header class="is-event-description">
                                     <h3 class="is-event-title">
                                         <a href="{{ event_link }}">{{ page.title }}</a>
                                     </h3>
@@ -193,7 +193,7 @@
                                                 &nbsp;Rediffusion</a>
                                         {% endif %}
                                     </p>
-                                </div>
+                                </header>
 
                                 <aside>
                                     <time datetime="{{ page.date | date(format="%+") }}"
