@@ -5,6 +5,7 @@
 
 ;(() => {
     let initialTarget = document.getElementById(window.location.hash.substring(1))
+    if (!initialTarget) return
 
     if (initialTarget.tagName === "DETAILS") {
         initialTarget.open = true
