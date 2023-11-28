@@ -6,7 +6,7 @@ Le site **24h Vulga** de [PogScience](https://pogscience.org) a été développ�
 Il se base sur un ancien site web, celui de [Générations Sorciers](https://web.archive.org/web/20210824070452/https://generations-sorciers.fr/),
 co-développé par Florent Poinsaut, Der Siebte Schatten, Alexandre Arrivé et Amaury Carrade.
 
-Les directeurs de la publication sont Robin Tisserand et Amaury Carrade.
+Le directeur de la publication est Robin Tisserand. Le directeur adjoint de la publication est Amaury Carrade.
 
 Le site est hébergé par [Cloudflare](https://www.cloudflare.com).
 
