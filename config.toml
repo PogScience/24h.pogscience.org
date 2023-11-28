@@ -55,5 +55,9 @@ banner = { path = "logos/banner.png", alt = "Bannière PogScience, avec le logo 
 links = [
     { title = "Mentions légales", path = "@/legal.md" },
     { title = "**PogScience**", url = "https://pogscience.org" },
-    { title = "Dossier de presse de PogScience", url = "https://neon.ly/GS-DPresse" },
+    { title = "Dossier de presse", url = "https://neon.ly/GS-DPresse" },
+    { title = "X (Twitter)", url = "https://twitter.com/PogScience" },
+    { title = "Instagram", url = "https://www.instagram.com/pogscience" },
+    { title = "LinkedIn", url = "https://www.linkedin.com/company/pogscience/" },
+    { title = "**Qui est en live ?**", url = "https://pogscience.durss.fr" },
 ]
