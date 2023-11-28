@@ -6,7 +6,7 @@
 
     {% if p.extra.header %}
         {% set header = p.extra.header %}
-        {% elif config.extra.header %}
+    {% elif config.extra.header %}
         {% set header = config.extra.header %}
     {% else %}
         {{ throw(message="You must either set (section|page).extra.header (in the TOML frontmatter) or config.extra.header (in config.toml). Neither is defined.") }}
@@ -110,4 +110,39 @@
     {% endblock %}
 
     {% block under_content %}{% endblock %}
+
+    {% block footer %}
+        {% set p = page | default(value=section) %}
+
+        {% if p.extra.footer %}
+            {% set footer = p.extra.footer %}
+        {% elif config.extra.footer %}
+            {% set footer = config.extra.footer %}
+        {% else %}
+            {{ throw(message="You must either set (section|page).extra.footer (in the TOML frontmatter) or config.extra.footer (in config.toml). Neither is defined.") }}
+        {% endif %}
+
+        <footer>
+            {% if footer.banner %}
+                {% set banner_1500 = resize_image(path=footer.banner.path, op="fit_width", width=1500, format="webp") %}
+                {% set banner_942 = resize_image(path=footer.banner.path, op="fit_width", width=942, format="webp") %}
+                {% set banner_320 = resize_image(path=footer.banner.path, op="fit_width", width=320*2, format="webp") %}
+                <figure>
+                    <img sizes="(max-width: 1500px) 100vw, 1500px"
+                         srcset="{{ banner_320.url }} 340w,
+                                 {{ banner_942.url }} 942w,
+                                 {{ banner_1500.url }} 1500w"
+                         src="{{ banner_1500.url }}"
+                         alt="{{ footer.banner.alt }}" />
+                </figure>
+            {% endif %}
+            <ul>
+                {% for link in footer.links %}
+                    <li>
+                        <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}">{{ link.title | markdown(inline=true) | safe }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </footer>
+    {% endblock %}
 {% endblock %}

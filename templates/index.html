@@ -12,7 +12,7 @@
         {% if section.extra.links %}
             {% for link in section.extra.links %}
                 <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
-                   class="button is-ghost is-large" target="_blank">{{ link.title }}</a>
+                   class="button is-ghost is-large" target="_blank">{{ link.title | markdown(inline=true) | safe }}</a>
             {% endfor %}
         {% endif %}
     </p>

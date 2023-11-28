@@ -1,0 +1,35 @@
+body > footer
+  margin-top: 7.5em
+  background: $blue
+
+  &, a
+    text-align: center
+    color: $purple-light
+
+  a
+    font-size: $size-5
+
+    &:hover
+      color: $white
+      text-decoration: underline
+      text-decoration-thickness: 1px
+
+  > figure
+    img
+      width: 100%
+
+  > ul
+    display: flex
+
+    flex-direction: row
+    flex-wrap: wrap
+    align-items: center
+    justify-content: center
+
+    gap: $block-spacing
+    padding: 2rem 0 2.8rem
+
+    list-style-type: none
+
+    +mobile
+      flex-direction: column

@@ -7,6 +7,11 @@ title = "24h Vulga – La, le, les physique·s"
 center_logo = true
 
 # Liens affichés sous le texte d'introduction (qu'est le corps de ce fichier MD).
+# Contenu de chaque élément :
+#   title = texte affiché du lien (Markdown inline supporté)
+# Et l'un des deux :
+#   path = chemin interne du lien (vers un fichier statique ou .md)
+#   url = chemin externe du lien
 links = [
     { title = "Discord", url = "https://discord.gg/QcDZxbYPpj" },
     { title = "Presse", path = "pogscience-24h-vulga-presse.pdf" }

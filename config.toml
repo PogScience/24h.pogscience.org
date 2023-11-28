@@ -33,7 +33,27 @@ begin = "2023-12-02"
 end = "2023-12-03"
 
 [extra.overlay_banner]
-logo = { path = "streamers/pogscience.png", alt = "PogScience" }
+# Logo affiché à gauche, taille cible : 300 par 300px
+logo = { path = "streamers/pogscience.png", alt = "Logo de PogScience, jeton blanc avec écrit POG, au pourtour vert inscrit PogScience en cercle, quatre fois." }
+
+# Contenu de la bannière. Vous pouvez utiliser Markdown.
 content = "**Suivez la chaîne PogScience** pour être prévenu·e au début des 24h Vulga !"
+
+# Lien affiché. À l'heure actuelle, uniquement sous la forme d'un bouton avec le logo et les couleurs de Twitch.
 link = { url = "https://twitch.tv/pogscience", label = "Suivre" }
 
+[extra.footer]
+# La bannière affichée au dessus des liens du pied de page. Si commenté/absent, pas de bannière.
+banner = { path = "logos/banner.png", alt = "Bannière PogScience, avec le logo PogScience et des dragon de komodo à la gueule grande ouverte, mascotte représentant le Pog de Twitch." }  # TODO meilleur alt
+
+# Liens affichés dans le pied de page.
+# Contenu de chaque élément :
+#   title = texte affiché du lien (Markdown inline supporté)
+# Et l'un des deux :
+#   path = chemin interne du lien (vers un fichier statique ou .md)
+#   url = chemin externe du lien
+links = [
+    { title = "Mentions légales", path = "@/legal.md" },
+    { title = "**PogScience**", url = "https://pogscience.org" },
+    { title = "Dossier de presse de PogScience", url = "https://neon.ly/GS-DPresse" },
+]
