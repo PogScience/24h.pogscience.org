@@ -17,6 +17,19 @@ links = [
     { title = "Presse", path = "pogscience-24h-vulga-presse.pdf" }
 ]
 
+# Logos affichés à côté des liens ci-dessus, ou dessous sur mobile. Chaque logo est aussi un
+# lien vers le site du partenaire.
+# Contenu de chaque élément :
+#   title = texte affiché au survol du logo
+#   alt = texte alternatif du logo
+#   logo = chemin vers le fichier image du logo (idéalement SVG)
+# Et l'un des deux :
+#   path = chemin interne du lien (vers un fichier statique ou .md)
+#   url = chemin externe du lien
+logos = [
+    { url = "https://cnrs.fr", logo="logos/cnrs.svg", alt="En partenariat avec le Centre national de la recherche scientifique (CNRS)", title="En partenariat avec le Centre national de la recherche scientifique (CNRS)"}
+]
+
 [extra.events]
 # Section contenant les événements
 section = "streams/_index.md"

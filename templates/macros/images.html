@@ -1,0 +1,21 @@
+{# TODO optimize breakpoints #}
+{% macro img_or_svg(path, alt, max_width=1200, hidden=false) %}
+    {% set img_meta = get_image_metadata(path=path) %}
+    {% if img_meta.format == "svg" %}
+        <span aria-label="{{ alt }}">
+            {{ load_data(path=path, format="plain") | safe }}
+        </span>
+    {% else %}
+        {% set img_max = resize_image(path=path, op="fit_width", width=1500, format="webp") %}
+        {% set img_942 = resize_image(path=path, op="fit_width", width=942, format="webp") %}
+        {% set img_320 = resize_image(path=path, op="fit_width", width=320*2, format="webp") %}
+
+        <img sizes="(max-width: {{ max_width }}px) 100vw, {{ max_width }}px"
+             srcset="{{ img_320.url }} 340w,
+                     {{ img_942.url }} 942w,
+                     {{ img_max.url }} {{ max_width }}w"
+             src="{{ get_url(path=path) }}"
+             alt="{{ alt }}"
+             {% if hidden %}aria-hidden="true"{% endif %} />
+    {% endif %}
+{% endmacro %}

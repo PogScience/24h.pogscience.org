@@ -140,12 +140,36 @@ div.gs-columns
       font-weight: 500
       color: $text-strong
 
-  .buttons
-    margin-top: 2rem
+  footer
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
 
     +mobile
-      justify-content: center
+      flex-direction: column
 
-      a.button:first-child
-        display: block
-        margin-right: 0
+    .buttons
+      margin-top: 2rem
+
+      +mobile
+        justify-content: center
+
+        a.button:first-child
+          display: block
+          margin-right: 0
+
+    .partnerships-logos
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+
+      align-items: center
+      justify-content: center
+      gap: $column-gap
+
+      img, svg
+        width: 64px
+
+        +mobile
+          width: 96px

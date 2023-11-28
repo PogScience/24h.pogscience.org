@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% import "macros/images.html" as img %}
 
 {% block outer_content %}
     {% set p = page | default(value=section) %}
@@ -18,24 +18,9 @@
             <div class="container">
                 <div class="columns gs-columns {% if p.extra.center_logo %}is-centered{% endif %}">
                     <div class="column is-4 gs-logo-dates">
-
-                        {% set logo_meta = get_image_metadata(path=header.logo.path) %}
-
                         <a href="{{ get_url(path="/") }}">
                             <picture class="gs-logo">
-                                {% if logo_meta.format == "svg" %}
-                                    <span aria-label="{{ header.logo.alt }}">
-                                    {{ load_data(path=header.logo.path, format="plain") | safe }}
-                                </span>
-                                {% else %}
-                                    <img sizes="(max-width: 1200px) 100vw, 1200px"
-                                         srcset="{{ resize_image(path=header.logo.path, width=340) }} 340w,
-                                     {{ resize_image(path=header.logo.path, width=942) }} 942w,
-                                     {{ resize_image(path=header.logo.path, width=1200) }} 1200w"
-                                         src="{{ get_url(path=header.logo.path) }}"
-                                         alt="{{ header.logo.alt }}"
-                                         aria-hidden="true"/>
-                                {% endif %}
+                                {{ img::img_or_svg(path=header.logo.path, alt=header.logo.alt, hidden=true) }}
                             </picture>
                         </a>
 
@@ -124,18 +109,11 @@
 
         <footer>
             {% if footer.banner %}
-                {% set banner_1500 = resize_image(path=footer.banner.path, op="fit_width", width=1500, format="webp") %}
-                {% set banner_942 = resize_image(path=footer.banner.path, op="fit_width", width=942, format="webp") %}
-                {% set banner_320 = resize_image(path=footer.banner.path, op="fit_width", width=320*2, format="webp") %}
                 <figure>
-                    <img sizes="(max-width: 1500px) 100vw, 1500px"
-                         srcset="{{ banner_320.url }} 340w,
-                                 {{ banner_942.url }} 942w,
-                                 {{ banner_1500.url }} 1500w"
-                         src="{{ banner_1500.url }}"
-                         alt="{{ footer.banner.alt }}" />
+                    {{ img::img_or_svg(path=footer.banner.path, alt=footer.banner.alt, max_width=1500) }}
                 </figure>
             {% endif %}
+
             <ul>
                 {% for link in footer.links %}
                     <li>

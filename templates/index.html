@@ -1,21 +1,32 @@
 {% extends "base_content.html" %}
-
+{% import "macros/images.html" as img %}
 
 {% block content %}
     {{ section.content | safe }}
 
-    <p class="buttons">
-        <a href="#programme" class="button is-primary is-large">
-            Consulter le programme
-        </a>
+    <footer>
+        <p class="buttons">
+            <a href="#programme" class="button is-primary is-large">
+                Consulter le programme
+            </a>
 
-        {% if section.extra.links %}
-            {% for link in section.extra.links %}
-                <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
-                   class="button is-ghost is-large" target="_blank">{{ link.title | markdown(inline=true) | safe }}</a>
-            {% endfor %}
+            {% if section.extra.links %}
+                {% for link in section.extra.links %}
+                    <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
+                       class="button is-ghost is-large" target="_blank">{{ link.title | markdown(inline=true) | safe }}</a>
+                {% endfor %}
+            {% endif %}
+        </p>
+        {% if section.extra.logos %}
+            <aside class="partnerships-logos">
+                {% for logo in section.extra.logos %}
+                    <a href="{% if logo.url %}{{ logo.url }}{% elif logo.path %}{{ get_url(path=logo.path) }}{% endif %}" title="{{ logo.title }}">
+                        {{ img::img_or_svg(path=logo.logo, alt=logo.alt) }}
+                    </a>
+                {% endfor %}
+            </aside>
         {% endif %}
-    </p>
+    </footer>
 {% endblock %}
 
 {% block under_content %}
