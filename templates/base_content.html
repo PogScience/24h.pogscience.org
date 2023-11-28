@@ -75,10 +75,11 @@
             {{ throw(message="You must either set (section|page).extra.overlay_banner (in the TOML frontmatter) or config.extra.overlay_banner (in config.toml). Neither is defined.") }}
         {% endif %}
 
+
         <section class="live-event">
             <div class="live-event-container">
                 <figure>
-                    {% set img = resize_image(path=banner.logo.path, width=300, height=300) %}
+                    {% set img = resize_image(path=banner.logo.path, width=300, height=300, format="webp") %}
                     <img src="{{ img.url }}" alt="{{ banner.logo.alt }}"/>
                 </figure>
                 <article>
