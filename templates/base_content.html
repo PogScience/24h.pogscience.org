@@ -82,19 +82,27 @@
     </section>
 
     {% block overlay_content %}
+        {% if p.extra.overlay_banner %}
+            {% set banner = p.extra.overlay_banner %}
+        {% elif config.extra.overlay_banner %}
+            {% set banner = config.extra.overlay_banner %}
+        {% else %}
+            {{ throw(message="You must either set (section|page).extra.overlay_banner (in the TOML frontmatter) or config.extra.overlay_banner (in config.toml). Neither is defined.") }}
+        {% endif %}
+
         <section class="live-event">
             <div class="live-event-container">
                 <figure>
-                    {% set img = resize_image(path="streamers/pogscience.png", width=300, height=300) %}
-                    <img src="{{ img.url }}" alt="PogScience"/>
+                    {% set img = resize_image(path=banner.logo.path, width=300, height=300) %}
+                    <img src="{{ img.url }}" alt="{{ banner.logo.alt }}"/>
                 </figure>
                 <article>
-                    <p><strong>Suivez la chaîne PogScience</strong> pour être prévenu·e au début des 24h Vulga !</p>
+                    {{ banner.content | trim | markdown | safe }}
                 </article>
                 <aside>
-                    <a href="https://twitch.tv/pogscience" class="twitch-button" target="_blank">
+                    <a href="{{ banner.link.url }}" class="twitch-button" target="_blank">
                         {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
-                        Suivre
+                        {{ banner.link.label }}
                     </a>
                 </aside>
             </div>

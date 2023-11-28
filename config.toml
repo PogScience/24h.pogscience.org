@@ -29,3 +29,8 @@ links = [
     { title = "Discord", url = "https://discord.gg/QcDZxbYPpj" },
     { title = "Presse", path = "pogscience-24h-vulga-presse.pdf" }
 ]
+
+[extra.overlay_banner]
+logo = { path = "streamers/pogscience.png", alt = "PogScience" }
+content = "**Suivez la chaîne PogScience** pour être prévenu·e au début des 24h Vulga !"
+link = { url = "https://twitch.tv/pogscience", label = "Suivre" }
