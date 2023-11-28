@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+
+{% block outer_content %}
+    {% set p = page | default(value=section) %}
+
+    {% if p.extra.header %}
+        {% set header = p.extra.header %}
+        {% elif config.extra.header %}
+        {% set header = config.extra.header %}
+    {% else %}
+        {{ throw(message="You must either set (section|page).extra.header (in the TOML frontmatter) or config.extra.header (in config.toml). Neither is defined.") }}
+    {% endif %}
+
+    <section class="hero has-live-event-overlay">
+        <div class="hero-head"></div>
+        <article class="hero-body">
+            <div class="container">
+                <div class="columns gs-columns {% if p.extra.center_logo %}is-centered{% endif %}">
+                    <div class="column is-4 gs-logo-dates">
+
+                        {% set logo_meta = get_image_metadata(path=header.logo.path) %}
+
+                        <a href="{{ get_url(path="/") }}">
+                            <picture class="gs-logo">
+                                {% if logo_meta.format == "svg" %}
+                                    <span aria-label="{{ header.logo.alt }}">
+                                    {{ load_data(path=header.logo.path, format="plain") | safe }}
+                                </span>
+                                {% else %}
+                                    <img sizes="(max-width: 1200px) 100vw, 1200px"
+                                         srcset="{{ resize_image(path=header.logo.path, width=340) }} 340w,
+                                     {{ resize_image(path=header.logo.path, width=942) }} 942w,
+                                     {{ resize_image(path=header.logo.path, width=1200) }} 1200w"
+                                         src="{{ get_url(path=header.logo.path) }}"
+                                         alt="{{ header.logo.alt }}"
+                                         aria-hidden="true"/>
+                                {% endif %}
+                            </picture>
+                        </a>
+
+                        {% if header.begin and header.end %}
+                            {% set locale = config.default_language | default(value="fr_FR") %}
+
+                            {% set month_begin = header.begin | date(format="%m") %}
+                            {% set month_end = header.end | date(format="%m") %}
+                            {% set spans_over_multiple_months = month_begin != month_end %}
+                            {% if spans_over_multiple_months %}
+                                {% set month_format = "%b" %}
+                            {% else %}
+                                {% set month_format = "%B" %}
+                            {% endif %}
+                            <aside class="gs-dates {% if not spans_over_multiple_months %}has-one-month{% endif %}">
+                                <time datetime="{{ header.begin | date(format="%+") }}"
+                                      class="is-day-begin">
+                                    {{ header.begin | date(format="%d", locale=locale) }}
+                                </time>
+                                <span class="is-days-separator">–</span>
+                                <time datetime="{{ header.end | date(format="%+") }}" class="is-day-end">
+                                    {{ header.end | date(format="%d", locale=locale) }}
+                                </time>
+                                <time datetime="{{ header.begin | date(format="%+") }}"
+                                      class="is-month-begin {% if not spans_over_multiple_months %}is-only-month{% endif %}">
+                                    {{ header.begin | date(format=month_format, locale=locale) }}
+                                </time>
+                                {% if spans_over_multiple_months %}
+                                    <time datetime="{{ header.end | date(format="%+") }}"
+                                          class="is-month-end">
+                                        {{ header.end | date(format=month_format, locale=locale) }}
+                                    </time>
+                                {% endif %}
+                            </aside>
+                        {% endif %}
+                    </div>
+
+                    <div class="column gs-main-content">
+                        {% block content %}{{ p.content | safe }}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    {% block overlay_content %}
+        <section class="live-event">
+            <div class="live-event-container">
+                <figure>
+                    {% set img = resize_image(path="streamers/pogscience.png", width=300, height=300) %}
+                    <img src="{{ img.url }}" alt="PogScience"/>
+                </figure>
+                <article>
+                    <p><strong>Suivez la chaîne PogScience</strong> pour être prévenu·e au début des 24h Vulga !</p>
+                </article>
+                <aside>
+                    <a href="https://twitch.tv/pogscience" class="twitch-button" target="_blank">
+                        {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
+                        Suivre
+                    </a>
+                </aside>
+            </div>
+        </section>
+    {% endblock %}
+
+    {% block under_content %}{% endblock %}
+{% endblock %}

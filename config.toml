@@ -18,5 +18,14 @@ build_search_index = false
 highlight_code = false
 
 [extra]
-# Put all your custom variables here
 logo = "logos/logo.png"
+
+[extra.header]
+logo = { path = "24h/24h-vulga.svg", alt = "24 heures vulga" }
+begin = "2023-12-02"
+end = "2023-12-03"
+
+links = [
+    { title = "Discord", url = "https://discord.gg/QcDZxbYPpj" },
+    { title = "Presse", path = "pogscience-24h-vulga-presse.pdf" }
+]

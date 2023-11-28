@@ -1,0 +1,10 @@
+{% extends "base_content.html" %}
+
+{% block content %}
+    {% set p = page | default(value=section) %}
+
+    <article class="content is-large">
+        <h1>{{ p.title }}</h1>
+        {{ p.content | safe }}
+    </article>
+{% endblock %}

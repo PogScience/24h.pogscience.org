@@ -1,103 +1,22 @@
-{% extends "base.html" %}
+{% extends "base_content.html" %}
 
-{% block outer_content %}
 
-    <section class="hero has-live-event-overlay">
-        <div class="hero-head"></div>
-        <article class="hero-body">
-            <div class="container">
-                <div class="columns gs-columns">
-                    <div class="column is-4 gs-logo-dates">
+{% block content %}
+    {{ section.content | safe }}
 
-                        {% set logo_meta = get_image_metadata(path=section.extra.events.logo.path) %}
+    <p class="buttons">
+        <a href="#programme" class="button is-primary is-large">
+            Consulter le programme
+        </a>
 
-                        <picture class="gs-logo">
-                            {% if logo_meta.format == "svg" %}
-                                <span aria-label="{{ section.extra.events.logo.alt }}">
-                                    {{ load_data(path=section.extra.events.logo.path, format="plain") | safe }}
-                                </span>
-                            {% else %}
-                                <img sizes="(max-width: 1200px) 100vw, 1200px"
-                                     srcset="{{ resize_image(path=section.extra.events.logo.path, width=340) }} 340w,
-                                     {{ resize_image(path=section.extra.events.logo.path, width=942) }} 942w,
-                                     {{ resize_image(path=section.extra.events.logo.path, width=1200) }} 1200w"
-                                     src="{{ get_url(path=section.extra.events.logo.path) }}"
-                                     alt="{{ section.extra.events.logo.alt }}"
-                                     aria-hidden="true"/>
-                            {% endif %}
-                        </picture>
+        {% for link in header.links %}
+            <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
+               class="button is-ghost is-large" target="_blank">{{ link.title }}</a>
+        {% endfor %}
+    </p>
+{% endblock %}
 
-                        {% if section.extra.events.begin and section.extra.events.end %}
-                            {% set locale = config.default_language | default(value="fr_FR") %}
-
-                            {% set month_begin = section.extra.events.begin | date(format="%m") %}
-                            {% set month_end = section.extra.events.end | date(format="%m") %}
-                            {% set spans_over_multiple_months = month_begin != month_end %}
-                            {% if spans_over_multiple_months %}
-                                {% set month_format = "%b" %}
-                            {% else %}
-                                {% set month_format = "%B" %}
-                            {% endif %}
-                            <aside class="gs-dates {% if not spans_over_multiple_months %}has-one-month{% endif %}">
-                                <time datetime="{{ section.extra.events.begin | date(format="%+") }}"
-                                      class="is-day-begin">
-                                    {{ section.extra.events.begin | date(format="%d", locale=locale) }}
-                                </time>
-                                <span class="is-days-separator">–</span>
-                                <time datetime="{{ section.extra.events.end | date(format="%+") }}" class="is-day-end">
-                                    {{ section.extra.events.end | date(format="%d", locale=locale) }}
-                                </time>
-                                <time datetime="{{ section.extra.events.begin | date(format="%+") }}"
-                                      class="is-month-begin {% if not spans_over_multiple_months %}is-only-month{% endif %}">
-                                    {{ section.extra.events.begin | date(format=month_format, locale=locale) }}
-                                </time>
-                                {% if spans_over_multiple_months %}
-                                    <time datetime="{{ section.extra.events.end | date(format="%+") }}"
-                                          class="is-month-end">
-                                        {{ section.extra.events.end | date(format=month_format, locale=locale) }}
-                                    </time>
-                                {% endif %}
-                            </aside>
-                        {% endif %}
-                    </div>
-
-                    <div class="column gs-pres">
-                        {{ section.content | safe }}
-
-                        <p class="buttons">
-                            <a href="#programme" class="button is-primary is-large">
-                                Consulter le programme
-                            </a>
-
-                            {% for link in section.extra.events.links %}
-                                <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
-                                   class="button is-ghost is-large" target="_blank">{{ link.title }}</a>
-                            {% endfor %}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </section>
-
-    <section class="live-event">
-        <div class="live-event-container">
-            <figure>
-                {% set img = resize_image(path="streamers/pogscience.png", width=300, height=300) %}
-                <img src="{{ img.url }}" alt="PogScience"/>
-            </figure>
-            <article>
-                <p><strong>Suivez la chaîne PogScience</strong> pour être prévenu·e au début des 24h Vulga !</p>
-            </article>
-            <aside>
-                <a href="https://twitch.tv/pogscience" class="twitch-button" target="_blank">
-                    {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
-                    Suivre
-                </a>
-            </aside>
-        </div>
-    </section>
-
+{% block under_content %}
     <section class="section container gs-events" id="programme">
         <div class="columns is-desktop is-variable is-8">
             <div class="column is-3 is-12-touch">
@@ -156,9 +75,9 @@
 
                     <article class="box {% if page.extra.highlighted %}is-final{% endif %}" {# is-past: past events #}
                              data-datetime="{{ page.date | date(format="%+") }}"
-                             {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}
+                            {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}
                              id="{{ page.slug }}"
-                             >
+                    >
 
                         <template class="event-live-template">
                             <a href="{{ event_link }}" class="is-live"
