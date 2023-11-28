@@ -18,19 +18,22 @@ build_search_index = false
 highlight_code = false
 
 [extra]
+# Logo utilisé pour l'intégration des liens sur les réseaux sociaux ou similaire (OpenGraph)
 logo = "logos/logo.png"
 
 [extra.header]
+# Le logo affiché sur les pages, à gauche du contenu ou du texte introductif.
+# path pour le chemin vers le fichier, alt pour son texte alternatif.
 logo = { path = "24h/24h-vulga.svg", alt = "24 heures vulga" }
+
+# Le début et la fin de l'événement.
+# L'affichage s'adaptera automatiquement, en affichant les noms des mois
+# sauf si c'est le même mois. Les années ne sont pas affichées.
 begin = "2023-12-02"
 end = "2023-12-03"
-
-links = [
-    { title = "Discord", url = "https://discord.gg/QcDZxbYPpj" },
-    { title = "Presse", path = "pogscience-24h-vulga-presse.pdf" }
-]
 
 [extra.overlay_banner]
 logo = { path = "streamers/pogscience.png", alt = "PogScience" }
 content = "**Suivez la chaîne PogScience** pour être prévenu·e au début des 24h Vulga !"
 link = { url = "https://twitch.tv/pogscience", label = "Suivre" }
+

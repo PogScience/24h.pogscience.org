@@ -2,10 +2,20 @@
 title = "24h Vulga – La, le, les physique·s"
 
 [extra]
+# Si le logo doit être affiché centré verticalement, ou en haut.
+# Pertinent centré sur les pages d'index, ou s'il y a peu de texte. Sinon, non.
 center_logo = true
 
+# Liens affichés sous le texte d'introduction (qu'est le corps de ce fichier MD).
+links = [
+    { title = "Discord", url = "https://discord.gg/QcDZxbYPpj" },
+    { title = "Presse", path = "pogscience-24h-vulga-presse.pdf" }
+]
+
 [extra.events]
+# Section contenant les événements
 section = "streams/_index.md"
+# Chemin vers le fichier représentant l'export iCal (avec le template `ical.html`).
 calendar = "@/_streams.ics.md"
 +++
 
