@@ -6,7 +6,7 @@
 
     {% if p.extra.header %}
         {% set header = p.extra.header %}
-    {% elif config.extra.header %}
+        {% elif config.extra.header %}
         {% set header = config.extra.header %}
     {% else %}
         {{ throw(message="You must either set (section|page).extra.header (in the TOML frontmatter) or config.extra.header (in config.toml). Neither is defined.") }}
@@ -69,7 +69,7 @@
     {% block overlay_content %}
         {% if p.extra.overlay_banner %}
             {% set banner = p.extra.overlay_banner %}
-        {% elif config.extra.overlay_banner %}
+            {% elif config.extra.overlay_banner %}
             {% set banner = config.extra.overlay_banner %}
         {% else %}
             {{ throw(message="You must either set (section|page).extra.overlay_banner (in the TOML frontmatter) or config.extra.overlay_banner (in config.toml). Neither is defined.") }}
@@ -102,7 +102,7 @@
 
         {% if p.extra.footer %}
             {% set footer = p.extra.footer %}
-        {% elif config.extra.footer %}
+            {% elif config.extra.footer %}
             {% set footer = config.extra.footer %}
         {% else %}
             {{ throw(message="You must either set (section|page).extra.footer (in the TOML frontmatter) or config.extra.footer (in config.toml). Neither is defined.") }}
@@ -115,13 +115,24 @@
                 </figure>
             {% endif %}
 
-            <ul>
-                {% for link in footer.links %}
-                    <li>
-                        <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}">{{ link.title | markdown(inline=true) | safe }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="container">
+                <ul class="links">
+                    {% for link in footer.links %}
+                        <li>
+                            <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}">{{ link.title | markdown(inline=true) | safe }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <ul class="social-networks">
+                    {% for link in footer.social_networks %}
+                        <li>
+                            <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}" title="{{ link.title }}" aria-label="{{ link.title }}">
+                                {{ img::img_or_svg(path="logos/social/" ~ link.icon ~ ".svg", alt=link.title) }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </footer>
     {% endblock %}
 {% endblock %}

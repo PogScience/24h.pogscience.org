@@ -47,6 +47,7 @@ link = { url = "https://twitch.tv/pogscience", label = "Suivre" }
 banner = { path = "logos/banner.png", alt = "Bannière PogScience, avec le logo PogScience et des dragon de komodo à la gueule grande ouverte, mascotte représentant le Pog de Twitch." }  # TODO meilleur alt
 
 # Liens affichés dans le pied de page.
+#
 # Contenu de chaque élément :
 #   title = texte affiché du lien (Markdown inline supporté)
 # Et l'un des deux :
@@ -54,10 +55,31 @@ banner = { path = "logos/banner.png", alt = "Bannière PogScience, avec le logo 
 #   url = chemin externe du lien
 links = [
     { title = "Mentions légales", path = "@/legal.md" },
-    { title = "**PogScience**", url = "https://pogscience.org" },
+    { title = "PogScience", url = "https://pogscience.org" },
     { title = "Dossier de presse", url = "https://neon.ly/GS-DPresse" },
-    { title = "X (Twitter)", url = "https://twitter.com/PogScience" },
-    { title = "Instagram", url = "https://www.instagram.com/pogscience" },
-    { title = "LinkedIn", url = "https://www.linkedin.com/company/pogscience/" },
     { title = "**Qui est en live ?**", url = "https://pogscience.durss.fr" },
+]
+
+# Réseaux sociaux affichés dans le pied de page.
+#
+# Contenu de chaque élément :
+#   title = texte du lien (infobulle & libellé alternatif)
+#   icon = icône affichée
+# Et l'un des deux :
+#   path = chemin interne du lien (vers un fichier statique ou .md)
+#   url = chemin externe du lien
+#
+# Les icônes suivantes sont supportées de base.
+#   discord    facebook  flickr    github
+#   instagram  linkedin  mastodon  reddit
+#   tiktok     twitch    twitter   x-twitter
+#   youtube
+# Vous pouvez également ajouter un fichier SVG dans le dossier static/logos/social/ et mettre le nom sans l'extension.
+social_networks = [
+    { title = "X (Twitter)", icon = "twitter", url = "https://twitter.com/PogScience" },
+    { title = "Instagram", icon = "instagram", url = "https://www.instagram.com/pogscience" },
+    { title = "LinkedIn", icon = "linkedin", url = "https://www.linkedin.com/company/pogscience/" },
+    { title = "Twitch", icon = "twitch", url = "https://www.twitch.tv/pogscience" },
+    { title = "Discord", icon = "discord", url = "https://discord.gg/QcDZxbYPpj" },
+    { title = "GitHub (code source)", icon = "github", url = "https://github.com/PogScience/" },
 ]

@@ -2,34 +2,54 @@ body > footer
   margin-top: 7.5em
   background: $blue
 
-  &, a
+  &, a, svg
     text-align: center
     color: $purple-light
+    fill: $purple-light
 
   a
     font-size: $size-5
 
     &:hover
-      color: $white
-      text-decoration: underline
-      text-decoration-thickness: 1px
+      &, svg
+        color: $white
+        fill: $white
+        text-decoration: underline
+        text-decoration-thickness: 1px
 
   > figure
     img
       width: 100%
 
-  > ul
+  > .container
     display: flex
-
     flex-direction: row
-    flex-wrap: wrap
     align-items: center
-    justify-content: center
-
-    gap: $block-spacing
-    padding: 2rem 0 2.8rem
-
-    list-style-type: none
+    justify-content: space-between
 
     +mobile
       flex-direction: column
+
+    ul
+      display: flex
+
+      flex-direction: row
+      flex-wrap: wrap
+      align-items: center
+      justify-content: center
+
+      gap: $block-spacing
+      padding: 2rem 0 2.8rem
+
+      list-style-type: none
+
+      +mobile
+        flex-direction: column
+
+      &.social-networks
+        +mobile
+          flex-direction: row
+
+        svg
+          width: 21px
+          height: 21px
