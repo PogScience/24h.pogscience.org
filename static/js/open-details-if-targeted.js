@@ -1,17 +1,27 @@
 /**
  * <details> elements that are targeted or direct child of a targeted element
- * will open automatically on page load.
+ * will open automatically on page load or anchor change.
  */
 
 ;(() => {
-    let initialTarget = document.getElementById(window.location.hash.substring(1))
-    if (!initialTarget) return
 
-    if (initialTarget.tagName === "DETAILS") {
-        initialTarget.open = true
+    /**
+     * Opens <details> elements that are targeted or direct children of targeted elements.
+     */
+    function openDetailsFromHash() {
+        let target = document.getElementById(window.location.hash.substring(1))
+        if (!target) return
+
+        if (target.tagName === "DETAILS") {
+            target.open = true
+        }
+
+        target.querySelectorAll(":scope > details").forEach(detailsElement => {
+            detailsElement.open = true
+        })
     }
 
-    initialTarget.querySelectorAll(":scope > details").forEach(detailsElement => {
-        detailsElement.open = true
-    })
+    window.addEventListener("hashchange", openDetailsFromHash)
+
+    openDetailsFromHash()
 })()

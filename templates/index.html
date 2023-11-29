@@ -86,9 +86,28 @@
                     {% set event_link = page.extra.replay | default(value=page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch)) %}
                     {% set live_link = page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch) %}
 
+                    {% set avatar_handle = page.extra.icon | default(value=page.extra.twitch) %}
+                    {% set avatar_path = "streamers/" ~ avatar_handle ~ ".png" %}
+                    {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
+
+                    {% if not avatar_meta %}
+                        {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpg" %}
+                        {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
+                    {% endif %}
+
+                    {% if not avatar_meta %}
+                        {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpeg" %}
+                        {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
+                    {% endif %}
+
+                    {% set avatar_large = resize_image(path=avatar_path, width=300, height=300, format="webp") %}
+
                     <article class="box {% if page.extra.highlighted %}is-final{% endif %}" {# is-past: past events #}
                              data-datetime="{{ page.date | date(format="%+") }}"
-                            {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}
+                             {% if page.extra.end %}data-datetime-end="{{ page.extra.end | date(format="%+") }}"{% endif %}
+                             data-avatar-large="{{ avatar_large.url }}"
+                             data-stream-handle="{{ avatar_handle }}"
+                             data-stream-link="{{ live_link }}"
                              id="{{ page.slug }}"
                     >
 
@@ -132,20 +151,6 @@
                                           class="is-mobile-time has-auto-timezone has-real-day-prepended"
                                           aria-hidden="true">{{ page.date | date(format="%Hh") -}}
                                     </time>
-
-                                    {% set avatar_handle = page.extra.icon | default(value=page.extra.twitch) %}
-                                    {% set avatar_path = "streamers/" ~ avatar_handle ~ ".png" %}
-                                    {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
-
-                                    {% if not avatar_meta %}
-                                        {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpg" %}
-                                        {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
-                                    {% endif %}
-
-                                    {% if not avatar_meta %}
-                                        {% set avatar_path = "streamers/" ~ avatar_handle ~ ".jpeg" %}
-                                        {% set avatar_meta = get_image_metadata(path=avatar_path, allow_missing=true) %}
-                                    {% endif %}
 
                                     <a href="{{ event_link }}"
                                        class="{% if not avatar_meta %}button is-primary is-large{% endif %}"

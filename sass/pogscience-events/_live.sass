@@ -1,5 +1,7 @@
 @use "sass:math"
 
+@import "mixins"
+
 $pgs-live-event-width: 1024px
 $pgs-live-event-height: 10rem
 $pgs-live-event-gap: 2rem
@@ -12,71 +14,146 @@ section.hero.has-live-event-overlay
   margin-bottom: 0
   padding-bottom: math.div($pgs-live-event-height, 2) + 3rem
 
-section.live-event
+section.live-events
   display: flex
+  flex-direction: column
   align-items: center
   justify-content: center
 
   margin-bottom: $pgs-live-event-gap
 
   .live-event-container
-    display: flex
-    flex-direction: row
-    align-items: center
+    position: relative
 
-    gap: 2rem
+    display: grid
+    grid-template-columns: $pgs-live-event-height min-content 1fr
+    grid-template-rows: 1fr
+
+    row-gap: 0
+    column-gap: 2rem
+
+    align-items: center
+    justify-content: center
 
     margin: - math.div($pgs-live-event-height, 2) 0 0
     padding: 0
 
     max-width: $pgs-live-event-width
-    height: $pgs-live-event-height
+    min-height: $pgs-live-event-height
+
+    &:not(:nth-child(1 of .live-now)):not(.default-live-event)
+      margin-top: 2 * $block-spacing
+
+    &.is-hidden
+      display: none
+
+    +tablet
+      width: 95%
 
     +mobile
       display: grid
-      grid-template-columns: repeat(4, 1fr)
-      grid-template-rows: 2fr / 1fr
+      grid-template-columns: 1fr 5fr
+      grid-template-rows: 5fr 1fr
       row-gap: 0
       column-gap: 1rem
 
       margin-left: .4rem
       margin-right: .4rem
 
-      figure
-        grid-row: 1 / 3
-        grid-column: 1
-        &, img
-          object-fit: cover
-      article
-        grid-row: 1
-        grid-column: 2 / 5
-      aside
-        grid-row: 2
-        grid-column: 2 / 5
+      width: 98%
 
-    // border: solid 1px $orange-lightest
     border-radius: $pgs-live-event-border-radius
     box-shadow: 2px 2px 8px 8px rgba($twitch-night, .2)
 
     background-color: $pgs-live-event-background
 
     figure
+      grid-row: 1
+      grid-column: 1
+
+      +mobile
+        grid-row: 1 / 3
+        grid-column: 1
+
       &, img
         display: block
         height: 100%
+        width: $pgs-live-event-height
+        object-fit: cover
 
-        border-bottom-left-radius: $pgs-live-event-border-radius //calc(#{$pgs-live-event-border-radius} - #{$pgs-live-event-border-width})
-        border-top-left-radius: $pgs-live-event-border-radius // calc(#{$pgs-live-event-border-radius} - #{$pgs-live-event-border-width})
+        +mobile
+          width: auto
+
+        border-bottom-left-radius: $pgs-live-event-border-radius
+        border-top-left-radius: $pgs-live-event-border-radius
 
     article
+      grid-row: 1
+      grid-column: 2 / 4
+
+      +mobile
+        grid-row: 1
+        grid-column: 2 / 3
+
       flex: 1
+      padding: .4rem 0
       font-size: 1.3rem
 
       +mobile
         font-size: 1.16rem
 
+      h3
+        font-family: Poppins, sans-serif
+        font-size: $size-3
+        font-weight: bold
+        line-height: 1.1
+
+        &, a
+          color: $orange-darkest
+
+        +mobile
+          font-size: $size-4
+
       p
         padding: .4rem .4rem .2rem 0
 
+      p.subtitle, p.streamers
+        margin: 0
+
+        +mobile
+          font-size: $size-5
+
+      p.streamers
+        font-size: $size-6
+
     aside
+      grid-row: 1
+      grid-column: 4 / 5
+
+      +mobile
+        grid-row: 2
+        grid-column: 2 / 3
+
+      display: flex
+      flex-direction: row
+      align-items: center
+
       padding-right: $pgs-live-event-gap
+
+      a.icon
+        margin-left: 1rem
+        color: $text
+
+    .is-live
+      @include live
+
+      position: absolute
+      top: -1.1rem
+      left: 5.5rem
+
+      +mobile
+        left: 1rem
+
+      box-shadow: 1px 1px 8px 5px rgba($twitch-night, .2)
+
+      font-size: 1.3rem

@@ -1,3 +1,5 @@
+@import "mixins"
+
 .gs-events
   .column-title-sticker
     position: sticky
@@ -36,8 +38,12 @@
     .current-timezone
       margin-top: 1rem
       font-size: 1.1em
+      color: $white
+
     .calendar
       margin-top: 2rem
+      color: $white
+
       .cal-url
         border-radius: 4px
         font-size: 1.1em
@@ -144,22 +150,8 @@
 
               a.is-live
                 position: relative
-                top: -1px
-
-                vertical-align: middle
-
-                margin-right: .4rem
-                padding: .2rem .4rem
-                border-radius: 4px
-
-                background-color: $red
-                color: $white
-
-                font-family: Rubik, sans-serif
-                font-size: 1rem
-
-                +mobile
-                  font-size: .9rem
+                top: -4px
+                @include live
 
             p.subtitle
               font-size: 1.5rem

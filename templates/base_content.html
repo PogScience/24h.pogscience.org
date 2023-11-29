@@ -71,27 +71,48 @@
             {% set banner = p.extra.overlay_banner %}
             {% elif config.extra.overlay_banner %}
             {% set banner = config.extra.overlay_banner %}
-        {% else %}
-            {{ throw(message="You must either set (section|page).extra.overlay_banner (in the TOML frontmatter) or config.extra.overlay_banner (in config.toml). Neither is defined.") }}
         {% endif %}
 
-
-        <section class="live-event">
-            <div class="live-event-container">
+        <template id="live-event-item">
+            <div class="live-event-container live-now" data-id="">
+                <span class="is-live" aria-label="Cet événement est actuellement en direct"
+                      title="Cet événement est actuellement en direct">LIVE</span>
                 <figure>
-                    {% set img = resize_image(path=banner.logo.path, width=300, height=300, format="webp") %}
-                    <img src="{{ img.url }}" alt="{{ banner.logo.alt }}"/>
+                    <img src="" alt=""/>
                 </figure>
-                <article>
-                    {{ banner.content | trim | markdown | safe }}
-                </article>
+                <article></article>
                 <aside>
-                    <a href="{{ banner.link.url }}" class="twitch-button" target="_blank">
+                    <a href="" class="twitch-button" target="_blank">
                         {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
-                        {{ banner.link.label }}
+                        <span></span>
+                    </a>
+                    <a href="" class="icon details-anchor" title="Voir les détails sur cet événement"
+                       aria-label="Voir les détails sur cet événement">
+                        {{ load_data(path="icons/caret.svg", format="plain") | safe }}
                     </a>
                 </aside>
             </div>
+        </template>
+
+        <section class="live-events" id="live-events">
+            {% if banner %}
+                {% set img = resize_image(path=banner.logo.path, width=300, height=300, format="webp") %}
+
+                <div class="live-event-container default-live-event">
+                    <figure>
+                        <img src="{{ img.url }}" alt="{{ banner.logo.alt }}"/>
+                    </figure>
+                    <article>
+                        {{ banner.content | trim | markdown | safe }}
+                    </article>
+                    <aside>
+                        <a href="{{ banner.link.url }}" class="twitch-button" target="_blank">
+                            {{ load_data(path="icons/twitch.svg", format="plain") | safe }}
+                            {{ banner.link.label }}
+                        </a>
+                    </aside>
+                </div>
+            {% endif %}
         </section>
     {% endblock %}
 
@@ -126,7 +147,8 @@
                 <ul class="social-networks">
                     {% for link in footer.social_networks %}
                         <li>
-                            <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}" title="{{ link.title }}" aria-label="{{ link.title }}">
+                            <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
+                               title="{{ link.title }}" aria-label="{{ link.title }}">
                                 {{ img::img_or_svg(path="logos/social/" ~ link.icon ~ ".svg", alt=link.title) }}
                             </a>
                         </li>
