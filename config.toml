@@ -37,7 +37,7 @@ end = "2023-12-03"
 logo = { path = "streamers/pogscience.png", alt = "Logo de PogScience, jeton blanc avec écrit POG, au pourtour vert inscrit PogScience en cercle, quatre fois." }
 
 # Contenu de la bannière. Vous pouvez utiliser Markdown.
-content = "**Suivez la chaîne PogScience** pour être prévenu·e au début des 24h Vulga !"
+content = "**Suivez la chaîne PogScience** pour être prévenu·e au début des 24h Vulga ou de nos autres événements à venir !"
 
 # Lien affiché. À l'heure actuelle, uniquement sous la forme d'un bouton avec le logo et les couleurs de Twitch.
 link = { url = "https://twitch.tv/pogscience", label = "Suivre" }
