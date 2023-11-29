@@ -73,8 +73,8 @@
                 } else {
                     e.remove()
                 }
-
             })
+
             // Now we add missing live events. They are guaranteed to be in order: existing live events were added
             // before, so they are after in time (else they would have been added earlier).
             Object.keys(liveNow).forEach(eventID => {
