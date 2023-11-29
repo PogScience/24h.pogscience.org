@@ -144,7 +144,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <ul class="social-networks">
+                <ul class="external-links">
                     {% for link in footer.social_networks %}
                         <li>
                             <a href="{% if link.url %}{{ link.url }}{% elif link.path %}{{ get_url(path=link.path) }}{% endif %}"
