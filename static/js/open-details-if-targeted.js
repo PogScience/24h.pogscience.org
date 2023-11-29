@@ -1,5 +1,5 @@
 /**
- * <details> elements that are targeted or child of a targeted element
+ * <details> elements that are targeted or direct child of a targeted element
  * will open automatically on page load.
  */
 
@@ -11,7 +11,7 @@
         initialTarget.open = true
     }
 
-    initialTarget.querySelectorAll("details").forEach(detailsElement => {
+    initialTarget.querySelectorAll(":scope > details").forEach(detailsElement => {
         detailsElement.open = true
     })
 })()
