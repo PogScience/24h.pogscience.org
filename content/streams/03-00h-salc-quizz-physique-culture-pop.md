@@ -20,4 +20,4 @@ Soirée quiz sur la ou le physique dans la culture pop (film, musique, série, b
 volontairement très large, avec **plein de questions !**
 
 Avec [Elliot (DrGwel)](https://twitch.tv/drgwel) à la co-animation, qui nous offrira également une
-[chronique sur les abysses](#03-00h-drgwel-adaptations-dans-les-abysses) !
+[chronique sur les abysses](/#03-00h-drgwel-adaptations-dans-les-abysses) !
