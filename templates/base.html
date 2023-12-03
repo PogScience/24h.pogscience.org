@@ -1,7 +1,7 @@
 {% import "macros/opengraph.html" as og %}
 
 {% set p = page | default(value=section) %}
-
+{% set logo_path = p.extra.logo | default(value=config.extra.logo | default(value="")) %}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,7 +18,21 @@
     <script src="{{ get_url(path="js/index.js", cachebust=true) }}" type="module" async defer></script>
 
     {% block opengraph %}
-    {{ og::opengraph(title=p.title | default(value=config.title), description=p.description | default(value=config.description), logo_path=p.extra.logo | default(value=config.extra.logo | default(value=""))) }}
+        {{ og::opengraph(title=p.title | default(value=config.title), description=p.description | default(value=config.description), logo_path=logo_path) }}
+    {% endblock %}
+
+    {% block favicons %}
+        {% set favicon = resize_image(path=logo_path, height=32, op="fit_height", format="png") %}
+        {% set apple_icon_144 = resize_image(path=logo_path, width=144, height=144, op="fill", format="png") %}
+        {% set apple_icon_114 = resize_image(path=logo_path, width=114, height=114, op="fill", format="png") %}
+        {% set apple_icon_72 = resize_image(path=logo_path, width=72, height=72, op="fill", format="png") %}
+        {% set apple_icon_57 = resize_image(path=logo_path, width=57, height=57, op="fill", format="png") %}
+
+        <link rel="icon" href="{{ favicon.url }}" />
+        <link rel="apple-touch-icon" href="{{ apple_icon_57.url }}" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ apple_icon_72.url }}" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ apple_icon_114.url }}" type="image/png" />
+        <link rel="apple-touch-icon" sizes="1144x144" href="{{ apple_icon_144.url }}" type="image/png" />
     {% endblock %}
 </head>
 
