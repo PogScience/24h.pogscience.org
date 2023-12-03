@@ -71,7 +71,7 @@
         /**
          * Overlay live event update
          */
-        // If nobody is live: we display the default pseudo-event
+        // If nobody is live, we display the default pseudo-event
         if (Object.keys(liveNow).length === 0) {
             overlaysContainer.querySelectorAll(".live-event-container.live-now").forEach(e => e.remove())
             if (defaultLiveEvent) {
@@ -87,7 +87,7 @@
             // We loop over existing displayed live events.
             // If they are in our list, we skip and remove them from our list.
             // If they are *not* in our list, that means they are no longer live: we remove them from the DOM.
-            // In the end we'll have a list of live events not already displayed.
+            // In the end, we'll have a list of live events not already displayed.
             overlaysContainer.querySelectorAll(".live-event-container.live-now").forEach(e => {
                 const eventID = e.dataset.id
                 if (liveNow[eventID]) {
