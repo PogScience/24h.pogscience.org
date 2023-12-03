@@ -78,9 +78,15 @@
                 </div>
             </div>
 
-            <div class="column is-events-list">
-                {% set events_sec = get_section(path=section.extra.events.section) %}
+            {% set events_sec = get_section(path=section.extra.events.section) %}
 
+            {% set event_global_first = events_sec.pages | reverse | first %}
+
+            {% set event_global_last = events_sec.pages | sort(attribute="extra.end") | last %}
+
+            <div class="column is-events-list"
+                 data-global-start="{{ event_global_first.date | date(format="%+") }}"
+                 data-global-end="{{ event_global_last.extra.end | date(format="%+") }}">
                 {% for page in events_sec.pages | reverse %}
                     {# If replay set, we link to that, else the explicit link (takes precedence over Twitch handle), else the Twitch link. #}
                     {% set event_link = page.extra.replay | default(value=page.extra.link | default(value="https://twitch.tv/" ~ page.extra.twitch)) %}

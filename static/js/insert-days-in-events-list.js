@@ -6,15 +6,36 @@ import {capitalize} from "./utils/text.js";
  */
 
 ;(() => {
-    const dateFormat = new Intl.DateTimeFormat('fr', {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-    })
-
+    const now = new Date()
     const headingTemplate = document.getElementById("events-day-heading")
 
     document.querySelectorAll(".is-events-list").forEach(eventsListElement => {
+        const globalEnd = new Date(eventsListElement.dataset.globalEnd)
+
+        /**
+         * @type {DateTimeFormatOptions}
+         */
+        let dateFormatOptions;
+
+        // When the whole event is finished, we display the years to
+        // make it clear that the event is now over.
+        if (globalEnd > now) {
+            dateFormatOptions = {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+            }
+        } else {
+            dateFormatOptions = {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+            }
+        }
+
+        const dateFormat = new Intl.DateTimeFormat('fr', dateFormatOptions)
+
         let currentDate = undefined
 
         eventsListElement.querySelectorAll("article[data-datetime]").forEach(eventElement => {

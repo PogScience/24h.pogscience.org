@@ -20,11 +20,26 @@
          * Live tags on events
          */
         document.querySelectorAll(".is-events-list").forEach(eventsListElement => {
+            const globalStart = new Date(eventsListElement.dataset.globalStart)
+            const globalEnd = new Date(eventsListElement.dataset.globalEnd)
+
+            if (globalStart > now) {
+                // If the event is not started *at all*, we know that nothing below will be useful as it
+                // won't change anything on the page: everything is generated in the pre-event state.
+                // So we stop here.
+                //
+                // Note: we don't stop here if the event is globally finished as we may be called when
+                // the event was *just finished*, where we need to clean up old live tags, etc.
+                // FIXME We could further optimize that by adding some flag when everything is finished
+                //  *and* cleaned up.
+                return
+            }
+
             eventsListElement.querySelectorAll("article[data-datetime][data-datetime-end]").forEach(eventElement => {
                 const begin = new Date(eventElement.dataset.datetime)
                 const end = new Date(eventElement.dataset.datetimeEnd)
 
-                if (begin < now && end > now) {
+                if (begin <= now && end >= now) {
                     liveNow[eventElement.id] = eventElement
 
                     if (eventElement.querySelector("a.is-live")) return;
@@ -39,8 +54,15 @@
                         liveTag.remove()
                     }
 
-                    if (begin < now) {
-                        eventElement.classList.add("is-past")
+                    if (end < now) {
+                        // If everything is finished, the page is on an “archive” state, used to spotlight
+                        // what this event will be or was, with all replays in the latter case, etc.
+                        // We don't want to dim everything at this point.
+                        if (globalEnd > now) {
+                            eventElement.classList.add("is-past")
+                        } else {
+                            eventElement.classList.remove("is-past")
+                        }
                     }
                 }
             })
