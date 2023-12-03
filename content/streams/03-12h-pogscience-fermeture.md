@@ -11,7 +11,7 @@ with = "Avec plein de streameurs·euses de l’événement et un quiz récapitul
 twitch = "pogscience"
 # link = ""
 
-end = 2023-12-03T13:30:00+01:00
+end = 2023-12-03T14:30:00+01:00
 
 # replay = ""
 +++
