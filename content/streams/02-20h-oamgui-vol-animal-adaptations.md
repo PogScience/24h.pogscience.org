@@ -13,7 +13,7 @@ twitch = "oamgui"
 
 end = 2023-12-02T22:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993470610"
 +++
 
 Introduction au monde des odonates, explications anatomiques et morphologiques comparatives, visionnage de vidéos de démonstrations
