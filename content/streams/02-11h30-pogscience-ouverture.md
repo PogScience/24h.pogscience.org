@@ -13,7 +13,7 @@ twitch = "pogscience"
 
 end = 2023-12-02T12:00:00+01:00
 
-# replay = "https://www.twitch.tv/videos/1992913712"  # FIXME supprimé
+replay = "https://www.twitch.tv/videos/1994246869"
 +++
 
 On ouvre le bal en _just chatting_ ! Un petit stream bonus, tranquille, pour se lancer sur les longues, mais
