@@ -16,4 +16,4 @@ end = 2023-12-03T10:00:00+01:00
 # replay = ""
 +++
 
-Initiation à l'histoire de la beauté dans le temps, avec un quizz !
+Initiation à l'histoire de la beauté dans le temps, avec un quiz !
