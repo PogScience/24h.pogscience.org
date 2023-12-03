@@ -13,7 +13,7 @@ twitch = "chappronneuiltv"
 
 end = 2023-12-03T08:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993837305" # FIXME temporaire
 +++
 
 Avec un tour des éruptions actuelles dans le monde, on parlera de la structure des volcans, de la physique des

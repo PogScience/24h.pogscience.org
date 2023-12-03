@@ -13,7 +13,7 @@ twitch = "sabinepasdelou"
 
 end = 2023-12-03T10:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993901564" # FIXME temporaire
 +++
 
 Initiation à l'histoire de la beauté dans le temps, avec un quiz !

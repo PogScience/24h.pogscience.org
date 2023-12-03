@@ -13,7 +13,7 @@ twitch = "aetiom"
 
 end = 2023-12-03T00:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993576577"
 +++
 
 Peut-on se déplacer dans l'espace comme dans Star Wars, Stargate ou Star Trek ?

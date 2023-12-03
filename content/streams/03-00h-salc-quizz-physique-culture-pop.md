@@ -13,7 +13,7 @@ twitch = "sciencesalacarte"
 
 end = 2023-12-03T04:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993540724" # FIXME temporaire
 +++
 
 Soirée quiz sur la ou le physique dans la culture pop (film, musique, série, bouquin, jeux vidéo…). Contenu

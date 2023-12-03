@@ -8,12 +8,12 @@ date = 2023-12-03T04:00:00+01:00
 [extra]
 with = ""
 
-twitch = "hell_frank"
+twitch = "hellfrank"
 # link = ""
 
 end = 2023-12-03T06:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993719496" # FIXME temporaire
 +++
 Lorsqu'on joue à un jeu vidéo historique, les vêtements, les armes et les styles de combat font partie des éléments
 captant le plus l'attention des joueurs. Suivez-moi à travers le jeu vidéo [Hellish Quart](https://www.hellishquart.com),

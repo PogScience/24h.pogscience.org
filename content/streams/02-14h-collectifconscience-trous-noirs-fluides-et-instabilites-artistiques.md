@@ -13,7 +13,7 @@ twitch = "collectifconscience"
 
 end = 2023-12-02T16:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1992996928"  # FIXME temporaire
 +++
 
 [L’Institut Pprime de Poitiers (CNRS)](https://pprime.fr/) nous accueille pour explorer la topologie de l'espace-temps

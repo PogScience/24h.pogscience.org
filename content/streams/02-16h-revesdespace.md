@@ -13,7 +13,7 @@ twitch = "revesdespace"
 
 end = 2023-12-02T18:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993067121" # FIXME temporaire
 +++
 
 Sacha, astrophysicien à l'Observatoire des Baronnies Provençales nous présentera le projet d'astronomie participative

@@ -13,7 +13,7 @@ twitch = "leflotdelhistoire"
 
 end = 2023-12-02T20:00:00+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993142611" # FIXME temporaire
 +++
 
 Histoire de la physique, physique de la mer, histoire de la navigation…

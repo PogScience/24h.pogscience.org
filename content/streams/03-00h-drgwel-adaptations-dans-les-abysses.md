@@ -14,7 +14,7 @@ icon = "drgwel"
 
 end = 2023-12-03T02:00:01+01:00
 
-# replay = ""
+replay = "https://www.twitch.tv/videos/1993540724" # FIXME temporaire
 +++
 
 Chronique pendant la soirée quiz de [Thomas de Sciences à la carte](https://www.twitch.tv/sciencesalacarte) !
