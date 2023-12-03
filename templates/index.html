@@ -142,14 +142,16 @@
                                             <a href="{{ live_link }}">{{ page.authors | join(sep=", ") }}</a>
                                         {% endif %}
                                         {% if page.authors and page.extra.with %}&nbsp;&middot;&nbsp;{% endif %}
-                                        <span>{{- page.extra.with | default(value="") | markdown(inline=true) | safe -}}</span>
-                                        {% if page.extra.with and page.extra.replay %}&nbsp;&middot;&nbsp;{% endif %}
-                                        {% if page.extra.replay %}
-                                            <a href="{{ page.extra.replay }}"
-                                               class="replay">{{ load_data(path="icons/film.svg", format="plain") | safe }}
-                                                &nbsp;Rediffusion</a>
-                                        {% endif %}
+                                        {% if page.extra.with %}<span>{{- page.extra.with | default(value="") | markdown(inline=true) | safe -}}</span>{% endif %}
                                     </p>
+                                    {% if page.extra.replay %}
+                                        <p class="replay">
+                                            <a href="{{ page.extra.replay }}">
+                                                {{ load_data(path="icons/film.svg", format="plain") | safe }}
+                                                Rediffusion
+                                            </a>
+                                        </p>
+                                    {% endif %}
                                 </header>
 
                                 <aside>

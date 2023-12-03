@@ -117,7 +117,10 @@
 
                 const content = liveEventFragment.querySelector(":scope > article")
                 content.innerHTML = eventListElem.querySelector("summary header").innerHTML
-                content.querySelector("a.is-live").remove() // Removes live tag as we have our own
+                content.querySelector("a.is-live").remove() // Removes the live tag, as we have our own.
+                content.querySelector("p.replay")?.remove() // Removes the replay link (if any), as we don't want to
+                                                            // display that here; if there is indeed a replay, the main
+                                                            // link would target it anyway. Also, that should not happen.
 
                 /**
                  * @type HTMLAnchorElement
